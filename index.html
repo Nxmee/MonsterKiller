@@ -8,7 +8,11 @@
 	<body>
 		<script type="text/javascript">
 			window.onload = function() {
-				var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+				//get document size
+				var width  = document.width;
+				var height = document.height;
+
+				var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create });
 
 				function preload () {
 					//get some assets
