@@ -9,8 +9,8 @@
 		<script type="text/javascript">
 			window.onload = function() {
 				//get document size
-				var width  = document.width;
-				var height = document.height;
+				var width  = document.body.clientWidth;
+				var height = document.body.clientHeight;
 
 				var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create });
 
