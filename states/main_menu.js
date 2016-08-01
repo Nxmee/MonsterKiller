@@ -1,5 +1,5 @@
 var MainMenu = class {
-	var buttons;
+	var buttons
 
 	preload() {
 		buttons = [
