@@ -9,7 +9,7 @@ window.onload = function() {
 
 	function preload () {
 		states = [
-			new MainMenu()
+			MainMenu
 		];
 
 		for (var i = states.length - 1; i >= 0; i--) {
