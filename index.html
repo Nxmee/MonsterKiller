@@ -4,6 +4,8 @@
 		<title>Monster Killer</title>
 		<script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
 
+		<script src="states/main_menu.js"></script>
+
 		<style type="text/css">
 			body{
 				margin:  0;
@@ -26,15 +28,7 @@
 				}
 
 				function create () {
-					var style = {
-						font:         "bold 64px Arial",
-						fill:         "#fff",
-						boundsAlignH: "center",
-						boundsAlignV: "middle"
-					};
-
-				    text = game.add.text(0, 0, "Hello World", style);
-				    text.setTextBounds(0, 100, width, 100);
+					MainMenu.render();
 				}
 
 			};
