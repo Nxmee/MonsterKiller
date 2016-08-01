@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<title>Monster Killer</title>
-		<script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+		<script src="http://cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+
+		<script src="main.js"></script>
 
 		<script src="states/main_menu.js"></script>
 
@@ -15,24 +17,5 @@
 	</head>
 
 	<body>
-		<script type="text/javascript">
-			window.onload = function() {
-				//get document width and height
-				var width  = window.innerWidth;
-				var height = window.innerHeight;
-
-				var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create });
-
-				function preload () {
-					//get some assets
-				}
-
-				function create () {
-					view = new MainMenu();
-					view.render();
-				}
-
-			};
-		</script>
 	</body>
 </html>
