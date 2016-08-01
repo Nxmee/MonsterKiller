@@ -1,20 +1,19 @@
-var MainMenu = class {
-	var buttons
+var MainMenu = {
+	buttons: [],
 
-	preload() {
-		buttons = [
-		];
+	preload: function () {
+		this.buttons = [];
 
-		for (var i = buttons.length - 1; i >= 0; i--) {
-			button = buttons[i];
+		for (var i = this.buttons.length - 1; i >= 0; i--) {
+			button = this.buttons[i];
 			game.load.spritesheet(button, 'assets/buttons/' + button + '.png', 193, 71);
 		}
 		
-	}
+	},
 
-	create() {
-		for (var i = buttons.length - 1; i >= 0; i--) {
-			button = buttons[i];
+	create: function () {
+		for (var i = this.buttons.length - 1; i >= 0; i--) {
+			button = this.buttons[i];
 			game.add.button(game.world.centerX, (i * 100) + 300, button, null, this, 2, 1, 0);
 		}
 	}
