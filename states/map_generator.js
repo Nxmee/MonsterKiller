@@ -113,13 +113,16 @@ for (i=0; i<generateN(10,15); i++) {
 		}
 	}
 
-	console.log(x, y)
-
-	if (map[y][x] > 3 && map[y][x] < 7) {
-		break
-	} else {
-		map[y][x] = 7
+	if (x > 0 && x < map_width - 1) {
+		if (y > 0 && map_length -1) {
+			if (map[y][x] > 3 && map[y][x] < 7) {
+					break
+				} else {
+					map[y][x] = 7
+			}
+		}
 	}
+
 }
 
 //debug
