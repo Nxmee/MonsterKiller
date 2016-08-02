@@ -1,4 +1,4 @@
-var play = {
+var Play = {
 
 	game: null,
 
@@ -12,6 +12,7 @@ var play = {
 			16,
 			16
 		);
+	},
 
 	create: function () {
 		// tile background

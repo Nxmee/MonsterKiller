@@ -3,21 +3,21 @@ var MainMenu = {
 		{
 			name: 'new_game',
 			onclick: function () {
-				this.game.set_game_state(1);
+				this.game.state.start('play');
 			}
 		},
 
 		{
 			name: 'continue',
 			onclick: function () {
-				this.game.set_game_state(2);
+				this.game.state.start('play');
 			}
 		},
 
 		{
 			name: 'Options',
 			onclick: function () {
-				this.game.set_game_state(3);
+				this.game.state.start('options_menu');
 			}
 		}
 	],
@@ -32,12 +32,18 @@ var MainMenu = {
 	preload: function (game) {
 		this.game = game;
 
+		//music
+		this.game.load.audio(
+			'music',
+			'assets/Music/Menu.wav'
+		)
+
 		// bg tile
 		this.game.load.spritesheet(
 			'bg_tile',
 			'assets/tiles/dirt.png',
-			16,
-			16
+			32,
+			32
 		);
 
 		// buttons
@@ -54,6 +60,12 @@ var MainMenu = {
 	},
 
 	create: function () {
+		// play music
+		this.game.music.stop();
+		this.game.music = this.game.add.audio('music')
+		this.game.music.play();
+		this.game.music.loopFull(0.6);
+
 		// tile background
 		this.game.add.tileSprite(
 			0,
