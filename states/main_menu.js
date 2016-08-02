@@ -1,23 +1,47 @@
 var MainMenu = {
-	buttons: [],
+	buttons: [
+		{
+			name:   'new_game',
+			onclick: function () {
+				alert('New Game!');
+			}
+		}
+	],
 
-	preload: function () {
-		this.buttons = ['new_game'];
+	button_width:   250,
+	button_height:  50,
+	buttons_y:      100,
+	button_spacing: 75,
 
+	preload: function (game) {
 		for (var i = this.buttons.length - 1; i >= 0; i--) {
 			button = this.buttons[i];
-			game.load.spritesheet(button, 'assets/buttons/' + button + '.png', 193, 71);
+			game.load.spritesheet(
+				button.name,
+				'assets/buttons/' + button.name + '.png',
+				this.button_width,
+				this.button_height
+			);
 		}
 		
 	},
 
-	create: function () {
+	create: function (game) {
 		for (var i = this.buttons.length - 1; i >= 0; i--) {
 			button = this.buttons[i];
-			game.add.button(game.world.centerX, (i * 100) + 300, button, null, this, 2, 1, 0);
+			game.add.button(
+				game.world.centerX - this.button_width/2,   // x position
+				(i * this.button_spacing) + this.buttons_y, // y position
+				button.name,                                // asset name
+				button.onclick,                             // action
+				this,
+				2,
+				1,
+				0
+			);
 		}
 	},
 
-	update: function () {
+	update: function (game) {
 	}
 };
