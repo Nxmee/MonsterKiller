@@ -24,7 +24,7 @@ var map_width = 20
 
 //[up, right, down, left]
 
-sides = {
+var sides = {
     1: {
         "x": generateN(4, map_width - 5),
         "y": 0,
