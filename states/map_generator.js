@@ -89,13 +89,18 @@ sides = {
 
 x = sides[side]["x"]
 y = sides[side]["y"]
-console.log(x, y)
 
 for (i=0; i<generateN(10,15); i++) {
+
 	move = generateN(1,100)
+
+	//if move is 0-odds of up*100, go up
 	up = sides[side]["sides"][0] * 100
+	//if move is between up and odds of right*100, go right
 	right = up + (sides[side]["sides"][1] * 100)
+	//if move is between right and odds of down*100, go down
 	down = right + (sides[side]["sides"][2] * 100)
+	//if move is greater than all these values, go left
 
 	if (move > 0) {
 		if (move > up) {
@@ -113,6 +118,7 @@ for (i=0; i<generateN(10,15); i++) {
 		}
 	}
 
+	//if x and y on the screen and not colliding into a tree, draw
 	if (x > 0 && x < map_width - 1) {
 		if (y > 0 && map_length -1) {
 			if (map[y][x] > 3 && map[y][x] < 7) {
@@ -122,7 +128,6 @@ for (i=0; i<generateN(10,15); i++) {
 			}
 		}
 	}
-
 }
 
 //debug
