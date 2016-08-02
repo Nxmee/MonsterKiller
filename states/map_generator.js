@@ -10,10 +10,10 @@
 var map = []
 
 //up-down
-var map_length = 25
+var map_length = 20
 
 //left-right
-var map_width = 30
+var map_width = 20
 
 //river
 
