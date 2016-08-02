@@ -2,7 +2,7 @@ var MainMenu = {
 	buttons: [],
 
 	preload: function () {
-		this.buttons = ['continue'];
+		this.buttons = ['new_game'];
 
 		for (var i = this.buttons.length - 1; i >= 0; i--) {
 			button = this.buttons[i];
