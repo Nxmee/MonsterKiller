@@ -55,5 +55,40 @@ for (i=0; i<n_trees; i++) {
 	map[y][x] = generateTree()
 }
 
+//Spawns a river
+//First pick a place on the edge to come from 
+//1 top
+//2 right
+//3 bottom
+//4 left
+//[up, right, down, left]
+
+side = generateN(1,4)
+first_pos = generateN(10,15)
+sides = {
+	1: {
+		"x": generateN(4, map_width-5),
+		"y": 0,
+		"sides": [0, 0.1, 0.8, 0.1]
+	},
+	2: {
+		"x": map_width - 1,
+		"y": generateN(4, map_length-5),
+		"sides": [0.1, 0, 0.1, 0.8]
+	},
+	3: {
+		"x": generateN(4, map_width-5),
+		"y": map_length - 1,
+		"sides": [0.8, 0.1, 0, 0.1]
+	},
+	4: {
+		"x": 0,
+		"y": generateN(4, map_length-5),
+		"sides": [0.1, 0.8, 0.1, 0]
+	}
+}
+
+
+
 //debug
 console.log(map)
