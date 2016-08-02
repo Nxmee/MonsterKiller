@@ -4,6 +4,7 @@
 //tree1 = 4
 //tree2 = 5
 //tree3 = 6
+//water = 7
 
 //map array
 map = []
@@ -64,31 +65,60 @@ for (i=0; i<n_trees; i++) {
 //[up, right, down, left]
 
 side = generateN(1,4)
-first_pos = generateN(10,15)
 sides = {
 	1: {
 		"x": generateN(4, map_width-5),
 		"y": 0,
-		"sides": [0, 0.1, 0.8, 0.1]
+		"sides": [0, 0.2, 0.6, 0.2]
 	},
 	2: {
 		"x": map_width - 1,
 		"y": generateN(4, map_length-5),
-		"sides": [0.1, 0, 0.1, 0.8]
+		"sides": [0.2, 0, 0.2, 0.6]
 	},
 	3: {
 		"x": generateN(4, map_width-5),
 		"y": map_length - 1,
-		"sides": [0.8, 0.1, 0, 0.1]
+		"sides": [0.6, 0.2, 0, 0.2]
 	},
 	4: {
 		"x": 0,
 		"y": generateN(4, map_length-5),
-		"sides": [0.1, 0.8, 0.1, 0]
+		"sides": [0.2, 0.6, 0.2, 0]
 	}
 }
 
+x = sides[side]["x"]
+y = sides[side]["y"]
 
+for (i=0; i<generateN(10,15); i++) {
+	move = generateN(1,100)
+	up = sides[side]["sides"][0] * 100
+	right = up + (sides[side]["sides"][1] * 100)
+	down = right + (sides[side]["sides"][2] * 100)
+
+	if (move > 0) {
+		if (move > up) {
+			if (move > right) {
+				if (move > down) {
+					x -=1
+				} else {
+					y -=1
+				}
+			} else {
+				x += 1
+			}
+		} else {
+			y += 1
+		}
+	}
+
+	if (map[y][x] > 3 && map[y][x] < 7) {
+		break
+	} else {
+		map[y][x] = 7
+	}
+}
 
 //debug
 console.log(map)
