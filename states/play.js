@@ -30,14 +30,7 @@ var Play = {
 	},
 
 	create: function () {
-		// tile background
-		this.game.add.tileSprite(
-			0,
-			0,
-			this.game.world.width,
-			this.game.world.height,
-			'bg_tile'
-		);
+		maparray = generate()
 	},
 
 	update: function () {
