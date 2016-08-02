@@ -1,12 +1,15 @@
 window.onload = function() {
 	var states;
-	var current_state = 0;
 
-	//get document width and height
-	var width  = window.innerWidth;
-	var height = window.innerHeight;
+	var width  = 720;
+	var height = 720;
 
 	var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create });
+	game.game_state = 0;
+	game.set_game_state = function (state) {
+		game.game_state = state;
+		states[game.game_state].create();
+	};
 
 	function preload () {
 		states = [
@@ -20,12 +23,12 @@ window.onload = function() {
 	}
 
 	function create () {
-		var state = states[current_state];
-		state.create(game);
+		var state = states[game.game_state];
+		state.create();
 	}
 
 	function update(){
-		var state = states[current_state];
-		state.update(game);
+		var state = states[game.game_state];
+		state.update();
 	}
 };
