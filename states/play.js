@@ -1,26 +1,11 @@
 var Play = {
-
+//http://phaser.io/examples/v2/loader/load-tilemap-json
 	game: null,
 
 	preload: function (game) {
 		this.game = game;
-
-		// bg tile
-		this.game.load.sprite(
-			'dirt1',
-			'assets/tiles/dirt1.png',
-			
-		);
-		this.game.load.sprite(
-				'dirt2',
-				'assets/tiles/dirt2.png',
-				
-		);
-		this.game.load.sprite(
-				'dirt3',
-				'assets/tiles/dirt3.png',
-				
-			);
+		game.load.tilemap('tilemap', 'assets/tiles/map,json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.image('tiles', 'assets/tiles/tilesheet.png');
 		this.game.loadspritesheet(
 			'player', 
 			'assets/bob/bob_all', 
@@ -28,9 +13,10 @@ var Play = {
 			16
 		);
 	},
-
+	var map;
 	create: function () {
-		maparray = generate()
+		map = game.add.tilemap('tilemap');
+		map.addTilesetImage('tilesheet1', 'tiles');
 	},
 
 	update: function () {
