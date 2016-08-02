@@ -15,17 +15,17 @@ window.onload = function() {
 
 		for (var i = states.length - 1; i >= 0; i--) {
 			var state = states[i];
-			state.preload();
+			state.preload(game);
 		}
 	}
 
 	function create () {
 		var state = states[current_state];
-		state.create();
+		state.create(game);
 	}
 
 	function update(){
 		var state = states[current_state];
-		state.update();
+		state.update(game);
 	}
 };
