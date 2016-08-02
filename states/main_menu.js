@@ -8,10 +8,10 @@ var MainMenu = {
 		}
 	],
 
-	button_width:   80,
-	button_height:  16,
+	button_width:   250,
+	button_height:  50,
 	buttons_y:      100,
-	button_spacing: 50,
+	button_spacing: 75,
 
 	preload: function (game) {
 		for (var i = this.buttons.length - 1; i >= 0; i--) {
