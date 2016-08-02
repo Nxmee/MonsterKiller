@@ -1,7 +1,7 @@
 //dirt1 = 1
 //dirt2 = 2
 //dirt3 = 3
-//tree  = 4
+//tree1 = 4
 //tree2 = 5
 //tree3 = 6
 
@@ -12,7 +12,7 @@ map = []
 map_length = 20
 
 //left-right
-map_width = 20
+map_width = 25
 
 //generates map
 for (a=0; a<map_length; a++) {
@@ -25,13 +25,13 @@ for (a=0; a<map_length; a++) {
 
 //adds border
 for (i=0; i<map_width; i++) {
-	map[0][i] = 4 + Math.floor(Math.random() * 4)
+	map[0][i] = 4 + Math.floor(Math.random() * 3)
 	map[map_length-1][i] = 4 + Math.floor(Math.random() * 3)
 }
 
 for (i=0; i<map_length; i++) {
-	map[i][0] = 4 + Math.floor(Math.random() * 4)
-	map[i][map_width-1] = 4 + Math.floor(Math.random() * 4)
+	map[i][0] = 4 + Math.floor(Math.random() * 3)
+	map[i][map_width-1] = 4 + Math.floor(Math.random() * 3)
 }
 
 console.log(map)
