@@ -15,6 +15,12 @@ var MainMenu = {
 		},
 
 		{
+			name: 'High_score',
+			onclick: function () {
+			}
+		},
+
+		{
 			name: 'Options',
 			onclick: function () {
 				this.game.state.start('options_menu');
@@ -32,16 +38,12 @@ var MainMenu = {
 	preload: function (game) {
 		this.game = game;
 
-		//music
-		this.game.load.audio(
-			'music',
-			'assets/Music/Menu.wav'
-		)
+		this.game.music.load('assets/Music/Gameplay.wav');
 
 		// bg tile
 		this.game.load.spritesheet(
 			'bg_tile',
-			'assets/tiles/dirt.png',
+			'assets/tiles/Dirt3.png',
 			32,
 			32
 		);
@@ -61,10 +63,7 @@ var MainMenu = {
 
 	create: function () {
 		// play music
-		this.game.music.stop();
-		this.game.music = this.game.add.audio('music')
 		this.game.music.play();
-		this.game.music.loopFull(0.6);
 
 		// tile background
 		this.game.add.tileSprite(
