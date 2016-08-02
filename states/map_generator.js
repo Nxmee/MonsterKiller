@@ -52,7 +52,6 @@ n_trees = generateN(2,5)
 for (i=0; i<n_trees; i++) {
 	x = generateN(1, (map_width-2))
 	y = generateN(1, (map_length-2))
-	console.log(x, y)
 	map[y][x] = generateTree()
 }
 
@@ -90,6 +89,7 @@ sides = {
 
 x = sides[side]["x"]
 y = sides[side]["y"]
+console.log(x, y)
 
 for (i=0; i<generateN(10,15); i++) {
 	move = generateN(1,100)
@@ -101,9 +101,9 @@ for (i=0; i<generateN(10,15); i++) {
 		if (move > up) {
 			if (move > right) {
 				if (move > down) {
-					x -=1
+					x -= 1
 				} else {
-					y -=1
+					y -= 1
 				}
 			} else {
 				x += 1
@@ -112,6 +112,8 @@ for (i=0; i<generateN(10,15); i++) {
 			y += 1
 		}
 	}
+
+	console.log(x, y)
 
 	if (map[y][x] > 3 && map[y][x] < 7) {
 		break
