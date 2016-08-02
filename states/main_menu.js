@@ -16,5 +16,8 @@ var MainMenu = {
 			button = this.buttons[i];
 			game.add.button(game.world.centerX, (i * 100) + 300, button, null, this, 2, 1, 0);
 		}
+	},
+
+	update: function () {
 	}
 };

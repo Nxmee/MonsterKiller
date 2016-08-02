@@ -1,5 +1,6 @@
 window.onload = function() {
 	var states;
+	var current_state = 0;
 
 	//get document width and height
 	var width  = window.innerWidth;
@@ -19,8 +20,12 @@ window.onload = function() {
 	}
 
 	function create () {
-		state = states[0];
+		var state = states[current_state];
 		state.create();
 	}
 
+	function update(){
+		var state = states[current_state];
+		state.update();
+	}
 };
