@@ -15,14 +15,23 @@ map_length = 20
 map_width = 20
 
 //generates map
-for (a=0; a<20; a++) {
+for (a=0; a<map_length; a++) {
 	row = []
-	for (b=0; b<20; b++) {
-		row.push(1)
+	for (b=0; b<map_width; b++) {
+		row.push(1 + Math.floor(Math.random() * 3))
 	}
 	map.push(row)
 }
 
 //adds border
+for (i=0; i<map_width; i++) {
+	map[0][i] = 4 + Math.floor(Math.random() * 4)
+	map[map_length-1][i] = 4 + Math.floor(Math.random() * 3)
+}
+
+for (i=0; i<map_length; i++) {
+	map[i][0] = 4 + Math.floor(Math.random() * 4)
+	map[i][map_width-1] = 4 + Math.floor(Math.random() * 4)
+}
 
 console.log(map)
