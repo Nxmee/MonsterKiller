@@ -100,7 +100,7 @@ function generateRiver() {
                     if (map[y][x] > 3 && map[y][x] < 7) {
                         break
                     } else {
-                        map[y][x] = 7
+                        map[y][x] = generateN(7, 9)
                     }
                 }
             }
