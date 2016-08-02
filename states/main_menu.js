@@ -89,7 +89,7 @@ var MainMenu = {
 			);
 		}
 
-		bar = new Bar(100, 400, 500, 32, 0.75);
+		bar = new Bar(this.game, 0.75);
 		bar.draw();
 	},
 
