@@ -40,6 +40,7 @@ var Play = {
 
     preload: function(game) {
         this.game = game;
+        this.game.music.load('assets/Music/Gameplay.wav');
         map_data = [].concat.apply([], generate())
         console.log(map_data);
         template['layers']['data'] = map_data
@@ -57,6 +58,7 @@ var Play = {
     create: function() {
         map = this.game.add.tilemap('tilemap');
         map.addTilesetImage('tilesheet1', 'tiles');
+        this.game.music.play();
     },
 
     update: function() {}

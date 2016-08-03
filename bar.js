@@ -1,7 +1,6 @@
 var Bar = function (game, progress) {
 	this.game     = game;
 	this.progress = progress;
-	this.offset   = 2;
 
 	this.game.load.spritesheet(
 		'bar_background',
@@ -19,5 +18,5 @@ var Bar = function (game, progress) {
 
 	this.draw = function () {
 		this.game.add.sprite(50, 50, 'bar_background');
-	}
+	};
 };

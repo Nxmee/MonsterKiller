@@ -46,7 +46,7 @@ var OptionsMenu = {
 	preload: function (game) {
 		this.game = game;
 
-		this.game.music.load('assets/Music/Manu.wav');
+		this.game.music.load('assets/Music/Gameplay.wav');
 
 		// bg tile
 		this.game.load.spritesheet(
