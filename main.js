@@ -6,12 +6,18 @@ window.onload = function() {
 	game.state.add('main_menu',    MainMenu);
 	game.state.add('options_menu', OptionsMenu);
 	game.state.add('play',         Play);
+	game.state.add('combat',       Combat);
 
-	game.music = {
-		stop: function () {
-			// nothing to stop
+	game.music = MusicPlayer;
+	game.music.init(game);
+
+	game.options = {
+		sound: true,
+		music: true,
+		update: function () {
+			game.music.set_state(this.music);
 		}
-	};
+	}
 
 	function preload () {
 	}

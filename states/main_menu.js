@@ -10,7 +10,13 @@ var MainMenu = {
 		{
 			name: 'continue',
 			onclick: function () {
-				this.game.state.start('play');
+				this.game.state.start('combat');
+			}
+		},
+
+		{
+			name: 'High_score',
+			onclick: function () {
 			}
 		},
 
@@ -32,16 +38,12 @@ var MainMenu = {
 	preload: function (game) {
 		this.game = game;
 
-		//music
-		this.game.load.audio(
-			'music',
-			'assets/Music/Menu.wav'
-		)
+		this.game.music.load('assets/music/menu.wav');
 
 		// bg tile
 		this.game.load.spritesheet(
 			'bg_tile',
-			'assets/tiles/dirt.png',
+			'assets/images/tiles/dirt_2.png',
 			32,
 			32
 		);
@@ -51,20 +53,16 @@ var MainMenu = {
 			button = this.buttons[i];
 			this.game.load.spritesheet(
 				button.name,
-				'assets/buttons/' + button.name + '.png',
+				'assets/images/buttons/' + button.name + '.png',
 				this.button_width,
 				this.button_height
 			);
-		}
-		
+		}		
 	},
 
 	create: function () {
 		// play music
-		this.game.music.stop();
-		this.game.music = this.game.add.audio('music')
 		this.game.music.play();
-		this.game.music.loopFull(0.6);
 
 		// tile background
 		this.game.add.tileSprite(

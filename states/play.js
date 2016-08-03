@@ -1,45 +1,67 @@
+var template = {
+		 "height":20,
+		 "layers":[
+		        {
+		         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 5, 4, 5, 4, 5, 6, 4, 4, 6, 4, 5, 6, 6, 5, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 6, 4, 1, 2, 2, 1, 1, 1, 3, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 5, 4, 2, 1, 1, 1, 3, 3, 1, 3, 1, 1, 3, 3, 2, 3, 2, 1, 1, 1, 6, 4, 2, 1, 2, 2, 3, 1, 1, 2, 1, 1, 1, 2, 2, 3, 1, 1, 1, 1, 5, 4, 1, 1, 1, 3, 1, 3, 1, 2, 1, 3, 2, 1, 1, 3, 1, 1, 2, 1, 6, 4, 1, 2, 1, 3, 1, 1, 1, 1, 1, 2, 2, 3, 7, 7, 7, 1, 2, 1, 4, 4, 1, 1, 3, 2, 2, 2, 2, 1, 1, 1, 1, 7, 7, 1, 7, 1, 1, 1, 5, 4, 1, 1, 1, 1, 2, 2, 3, 1, 1, 3, 1, 3, 1, 1, 7, 7, 7, 7, 6, 4, 1, 1, 1, 1, 3, 2, 2, 1, 2, 1, 3, 2, 2, 2, 1, 2, 2, 1, 6, 4, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 1, 5, 4, 1, 3, 2, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 4, 4, 1, 3, 2, 2, 1, 2, 3, 3, 1, 1, 2, 1, 1, 1, 2, 2, 2, 1, 5, 4, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 1, 2, 2, 1, 1, 4, 4, 1, 1, 3, 3, 3, 1, 1, 3, 1, 3, 1, 3, 1, 2, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 2, 1, 2, 2, 1, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 4, 4, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 4, 4],
+		         "height":20,
+		         "name":"L1",
+		         "opacity":1,
+		         "type":"tilelayer",
+		         "visible":true,
+		         "width":20,
+		         "x":0,
+		         "y":0
+		        }],
+		 "nextobjectid":1,
+		 "orientation":"orthogonal",
+		 "renderorder":"right-down",
+		 "tileheight":32,
+		"tilesets":[
+		        {
+		         "columns":3,
+		         "firstgid":1,
+		         "image":"assets/images/tiles/tilesheet.png",
+		         "imageheight":96,
+		         "imagewidth":96,
+		         "margin":0,
+		         "name":"Tileset1",
+		         "spacing":0,
+		         "tilecount":9,
+		         "tileheight":32,
+		         "tilewidth":32
+		        }],
+		 "tilewidth":32,
+		 "version":1,
+		 "width":20
+}
+
+
 var Play = {
+    //http://phaser.io/examples/v2/loader/load-tilemap-json
+    game: null,
 
-	game: null,
+    preload: function(game) {
+        this.game = game;
+        map_data = [].concat.apply([], generate())
+        console.log(map_data);
+       // template['layers']['data'] = map_data
+       // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+        game.load.image('tiles', 'assets/images/tiles/tilesheet.png');
+        /*this.game.loadspritesheet(
+            'player',
+            'assets/bob/bob_all',
+            16,
+            16
+        );*/
+    },
+    map: null,
+    create: function() {
+        map = this.game.add.tilemap('tilemap');
+        map.addTilesetImage('Tileset1', 'tiles');
+     
 
-	preload: function (game) {
-		this.game = game;
+    },
 
-		// bg tile
-		this.game.load.sprite(
-			'dirt1',
-			'assets/tiles/dirt1.png',
-			
-		);
-		this.game.load.sprite(
-				'dirt2',
-				'assets/tiles/dirt2.png',
-				
-		);
-		this.game.load.sprite(
-				'dirt3',
-				'assets/tiles/dirt3.png',
-				
-			);
-		this.game.loadspritesheet(
-			'player', 
-			'assets/bob/bob_all', 
-			16, 
-			16
-		);
-	},
-
-	create: function () {
-		// tile background
-		this.game.add.tileSprite(
-			0,
-			0,
-			this.game.world.width,
-			this.game.world.height,
-			'bg_tile'
-		);
-	},
-
-	update: function () {
-	}
+    update: function() {}
 };
