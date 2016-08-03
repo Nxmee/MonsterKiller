@@ -11,9 +11,6 @@ window.onload = function() {
 	game.options = {
 		sound: true,
 		music: true,
-		
-
-	function preload () {
 	}
 
 	function create () {

@@ -24,8 +24,8 @@ var Play = {
 
         this.game.load.image('tiles', 'assets/images/super_mario.png');
     },
-    var map;
-    var layer;
+    map = null;
+    layer = null;
     create: function() {
     	  game.stage.backgroundColor = '#787878';
 
