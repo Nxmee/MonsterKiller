@@ -18,11 +18,11 @@ var Play = {
         //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
         //  This could be Phaser.Tilemap.CSV too.
 
-        this.game.load.tilemap('mario', 'assets/images/tiles/mario.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.tilemap('map1', 'assets/images/tiles/test.json', null, Phaser.Tilemap.TILED_JSON);
 
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
-        this.game.load.image('tiles', 'assets/images/super_mario.png');
+        this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png');
     },
     
     create: function() {
@@ -31,15 +31,15 @@ var Play = {
     	  this.game.stage.backgroundColor = '#787878';
 
     	    //  The 'mario' key here is the Loader key given in game.load.tilemap
-    	    map = this.game.add.tilemap('mario');
+    	    map = this.game.add.tilemap('map1');
 
     	    //  The first parameter is the tileset name, as specified in the Tiled map editor (and in the tilemap json file)
     	    //  The second parameter maps this name to the Phaser.Cache key 'tiles'
-    	    map.addTilesetImage('SuperMarioBros-World1-1', 'tiles');
+    	    map.addTilesetImage('tilesheet', 'tiles');
     	    
     	    //  Creates a layer from the World1 layer in the map data.
     	    //  A Layer is effectively like a Phaser.Sprite, so is added to the display list.
-    	    layer = map.createLayer('World1');
+    	    layer = map.createLayer('Layer1');
 
     	    //  This resizes the game world to match the layer dimensions
     	    layer.resizeWorld();
