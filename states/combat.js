@@ -54,7 +54,11 @@ var Combat = {
         this.exp_bar.progress += 0.0005;
 
         for (var i = this.buttons.length - 1; i >= 0; i--) {
-            this.buttons[i].draw((i * 116) + 50, this.game.height - 150);
+            var exp_bar_width = this.exp_bar.width;
+            var button_width = 100; // REPEATED INFORMATION
+            var buttons = this.buttons.length;
+            var spacing = (exp_bar_width - (buttons * button_width)) / (buttons - 1);
+            this.buttons[i].draw((i * (button_width + spacing)) + 50, this.game.height - 150);
         }
     }
 };
