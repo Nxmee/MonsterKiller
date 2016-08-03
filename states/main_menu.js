@@ -38,7 +38,6 @@ var MainMenu = {
 	preload: function (game) {
 		this.game = game;
 
-		this.game.music.load('assets/music/menu.wav');
 
 		// bg tile
 		this.game.load.spritesheet(
@@ -62,7 +61,7 @@ var MainMenu = {
 
 	create: function () {
 		// play music
-		this.game.music.play();
+
 
 		// tile background
 		this.game.add.tileSprite(

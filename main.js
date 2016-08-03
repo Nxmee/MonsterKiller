@@ -6,7 +6,7 @@ window.onload = function() {
 	game.state.add('main_menu',    MainMenu);
 	game.state.add('options_menu', OptionsMenu);
 	game.state.add('play',         Play);
-	game.state.add('combat',       Combat);
+	//game.state.add('combat',       Combat);
 	console.log("After Play");
 	game.options = {
 		sound: true,

@@ -28,7 +28,7 @@ var Play = {
     create: function() {
     	var map = null;
     	var layer = null;
-    	  game.stage.backgroundColor = '#787878';
+    	  this.game.stage.backgroundColor = '#787878';
 
     	    //  The 'mario' key here is the Loader key given in game.load.tilemap
     	    map = this.game.add.tilemap('mario');
