@@ -1,22 +1,34 @@
-var Bar = function (game, progress) {
+var Bar = function (game, x, y, width, height, progress) {
 	this.game     = game;
+	this.x        = x;
+	this.y        = y;
+	this.width    = width;
+	this.height   = height;
 	this.progress = progress;
 
-	this.game.load.spritesheet(
+	this.game.load.image(
 		'bar_background',
-		'assets/misc/Images/bar_background.png',
-		620,
-		16
+		'assets/misc/Images/bar_background.png'
 	);
 
-	this.game.load.spritesheet(
+	this.game.load.image(
 		'bar_bar',
-		'assets/misc/Images/bar_bar.png',
-		616,
-		12
+		'assets/misc/Images/bar_bar.png'
 	);
 
 	this.draw = function () {
-		this.game.add.sprite(50, 50, 'bar_background');
+		var bg_bar = this.game.add.sprite(this.x, this.y, 'bar_background');
+		bg_bar.resize(0, 0, this.width, this.height);
+
+		var bar = this.game.add.sprite(this.x + 2, this.y + 2, 'bar_bar');
+		bar.resize(0, 0, this.progress * (this.width - 4), this.height - 4);
 	};
 };
+
+Phaser.Sprite.prototype.resize = function(x, y, w, h){
+	w = Math.max(0, w);
+	h = Math.max(0, h);
+
+	var crop = new Phaser.Rectangle(x, y, w, h);
+	this.crop(crop);
+}

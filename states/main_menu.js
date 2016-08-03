@@ -10,7 +10,7 @@ var MainMenu = {
 		{
 			name: 'continue',
 			onclick: function () {
-				this.game.state.start('play');
+				this.game.state.start('combat');
 			}
 		},
 
@@ -57,8 +57,7 @@ var MainMenu = {
 				this.button_width,
 				this.button_height
 			);
-		}
-		
+		}		
 	},
 
 	create: function () {
@@ -88,9 +87,6 @@ var MainMenu = {
 				0
 			);
 		}
-
-		bar = new Bar(this.game, 0.75);
-		bar.draw();
 	},
 
 	update: function () {
