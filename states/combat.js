@@ -27,15 +27,19 @@ var Combat = {
 
     create: function() {
         this.game.music.play();
-    },
 
-    update: function() {
         this.game.add.sprite(
             0,
             0,
             'bg'
         );
 
+        for (var i = this.combatants.length - 1; i >= 0; i--) {
+            this.combatants[i].draw();
+        }
+    },
+
+    update: function() {
         this.player_bar.draw();
         this.player_bar.progress = this.combatants[1].hp_frac();
 
@@ -44,10 +48,6 @@ var Combat = {
 
         this.exp_bar.draw();
         this.exp_bar.progress += 0.0005;
-
-        for (var i = this.combatants.length - 1; i >= 0; i--) {
-            this.combatants[i].draw();
-        }
 
         for (var i = this.buttons.length - 1; i >= 0; i--) {
             this.buttons[i].draw((i * 116) + 50, this.game.height - 150);
