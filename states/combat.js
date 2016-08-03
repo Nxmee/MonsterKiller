@@ -21,7 +21,11 @@ var Combat = {
         );
 
         this.buttons = [
-            new AttackButton(this.game, this, 'assets/images/buttons/Punch_Button.png', 5, 0)
+            new AttackButton(this.game, this, 'assets/images/buttons/Punch_Button.png',        5, 0),
+            new AttackButton(this.game, this, 'assets/images/buttons/Pointy_Stick_Button.png', 10, 0),
+            new AttackButton(this.game, this, 'assets/images/buttons/Kick_Button.png',         15, 0),
+            new AttackButton(this.game, this, 'assets/images/buttons/Axe_Button.png',          50, 0),
+            new AttackButton(this.game, this, 'assets/images/buttons/Sword_Button.png',        100, 0)
         ];
     },
 

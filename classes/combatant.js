@@ -18,7 +18,7 @@ var Combatant = function (){
 	};
 
 	this.check_alive = function () {
-		if (this.hp < 0) {
+		if (this.hp <= 0) {
 			alert('DEAD!');
 		}
 	};
