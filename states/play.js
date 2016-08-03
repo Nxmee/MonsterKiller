@@ -6,6 +6,10 @@ var template = {
 		         "height":20,
 		         "name":"L1",
 		         "opacity":1,
+		         "properties":
+		            {
+		             "time":"1000"
+		            },
 		         "type":"tilelayer",
 		         "visible":true,
 		         "width":20,
@@ -46,8 +50,8 @@ var Play = {
         console.log(map_data);
        // template['layers']['data'] = map_data
        // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
-        game.load.image('tiles', 'assets/images/tiles/tilesheet.png');
+        this.game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+        this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png');
         /*this.game.loadspritesheet(
             'player',
             'assets/bob/bob_all',
