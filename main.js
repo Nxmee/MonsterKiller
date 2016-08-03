@@ -1,6 +1,6 @@
 window.onload = function() {
-	var width  = 720;
-	var height = 720;
+	var width  = 800;
+	var height = 600;
 
 	var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create });
 	game.state.add('main_menu',    MainMenu);

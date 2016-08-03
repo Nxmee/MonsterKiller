@@ -1,44 +1,3 @@
-var template = {
-		 "height":20,
-		 "layers":[
-		        {
-		         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 5, 4, 5, 4, 5, 6, 4, 4, 6, 4, 5, 6, 6, 5, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 6, 4, 1, 2, 2, 1, 1, 1, 3, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 5, 4, 2, 1, 1, 1, 3, 3, 1, 3, 1, 1, 3, 3, 2, 3, 2, 1, 1, 1, 6, 4, 2, 1, 2, 2, 3, 1, 1, 2, 1, 1, 1, 2, 2, 3, 1, 1, 1, 1, 5, 4, 1, 1, 1, 3, 1, 3, 1, 2, 1, 3, 2, 1, 1, 3, 1, 1, 2, 1, 6, 4, 1, 2, 1, 3, 1, 1, 1, 1, 1, 2, 2, 3, 7, 7, 7, 1, 2, 1, 4, 4, 1, 1, 3, 2, 2, 2, 2, 1, 1, 1, 1, 7, 7, 1, 7, 1, 1, 1, 5, 4, 1, 1, 1, 1, 2, 2, 3, 1, 1, 3, 1, 3, 1, 1, 7, 7, 7, 7, 6, 4, 1, 1, 1, 1, 3, 2, 2, 1, 2, 1, 3, 2, 2, 2, 1, 2, 2, 1, 6, 4, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 1, 5, 4, 1, 3, 2, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 4, 4, 1, 3, 2, 2, 1, 2, 3, 3, 1, 1, 2, 1, 1, 1, 2, 2, 2, 1, 5, 4, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 1, 2, 2, 1, 1, 4, 4, 1, 1, 3, 3, 3, 1, 1, 3, 1, 3, 1, 3, 1, 2, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 2, 1, 2, 2, 1, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 4, 4, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 4, 4],
-		         "height":20,
-		         "name":"L1",
-		         "opacity":1,
-		         "properties":
-		            {
-		             "time":"1000"
-		            },
-		         "type":"tilelayer",
-		         "visible":true,
-		         "width":20,
-		         "x":0,
-		         "y":0
-		        }],
-		 "nextobjectid":1,
-		 "orientation":"orthogonal",
-		 "renderorder":"right-down",
-		 "tileheight":32,
-		"tilesets":[
-		        {
-		         "columns":3,
-		         "firstgid":1,
-		         "image":"assets/images/tiles/tilesheet.png",
-		         "imageheight":96,
-		         "imagewidth":96,
-		         "margin":0,
-		         "name":"Tileset1",
-		         "spacing":0,
-		         "tilecount":9,
-		         "tileheight":32,
-		         "tilewidth":32
-		        }],
-		 "tilewidth":32,
-		 "version":1,
-		 "width":20
-}
-
 
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
@@ -46,25 +5,43 @@ var Play = {
 
     preload: function(game) {
         this.game = game;
-        map_data = [].concat.apply([], generate())
-        console.log(map_data);
-       // template['layers']['data'] = map_data
-       // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
-        this.game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
-        this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png');
-        /*this.game.loadspritesheet(
-            'player',
-            'assets/bob/bob_all',
-            16,
-            16
-        );*/
-    },
-    map: null,
-    create: function() {
-        map = this.game.add.tilemap('tilemap');
-        map.addTilesetImage('Tileset1', 'tiles');
-     
 
+        //  Tilemaps are split into two parts: The actual map data (usually stored in a CSV or JSON file) 
+        //  and the tileset/s used to render the map.
+
+        //  Here we'll load the tilemap data. The first parameter is a unique key for the map data.
+
+        //  The second is a URL to the JSON file the map data is stored in. This is actually optional, you can pass the JSON object as the 3rd
+        //  parameter if you already have it loaded (maybe via a 3rd party source or pre-generated). In which case pass 'null' as the URL and
+        //  the JSON object as the 3rd parameter.
+
+        //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
+        //  This could be Phaser.Tilemap.CSV too.
+
+        this.game.load.tilemap('mario', 'assets/images/tiles/mario.json', null, Phaser.Tilemap.TILED_JSON);
+
+        //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
+
+        this.game.load.image('tiles', 'assets/images/super_mario.png');
+    },
+    var map;
+    var layer;
+    create: function() {
+    	  game.stage.backgroundColor = '#787878';
+
+    	    //  The 'mario' key here is the Loader key given in game.load.tilemap
+    	    map = this.game.add.tilemap('mario');
+
+    	    //  The first parameter is the tileset name, as specified in the Tiled map editor (and in the tilemap json file)
+    	    //  The second parameter maps this name to the Phaser.Cache key 'tiles'
+    	    map.addTilesetImage('SuperMarioBros-World1-1', 'tiles');
+    	    
+    	    //  Creates a layer from the World1 layer in the map data.
+    	    //  A Layer is effectively like a Phaser.Sprite, so is added to the display list.
+    	    layer = map.createLayer('World1');
+
+    	    //  This resizes the game world to match the layer dimensions
+    	    layer.resizeWorld();
     },
 
     update: function() {}
