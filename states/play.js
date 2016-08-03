@@ -18,7 +18,7 @@ var template = {
     "tilesets": [{
         "columns": 3,
         "firstgid": 1,
-        "image": "assets\/tiles\/tilesheet.png",
+        "image": "assets\/images\/tiles\/tilesheet.png",
         "imageheight": 96,
         "imagewidth": 96,
         "margin": 0,
@@ -40,13 +40,13 @@ var Play = {
 
     preload: function(game) {
         this.game = game;
-        this.game.music.load('assets/Music/Gameplay.wav');
+        this.game.music.load('assets/music/gameplay.wav');
         map_data = [].concat.apply([], generate())
         console.log(map_data);
         template['layers']['data'] = map_data
         game.load.tilemap('tilemap', null
 , template, Phaser.Tilemap.TILED_JSON);
-        game.load.image('tiles', 'assets/tiles/tilesheet.png');
+        game.load.image('tiles', 'assets/images/tiles/tilesheet.png');
         /*this.game.loadspritesheet(
             'player',
             'assets/bob/bob_all',

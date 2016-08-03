@@ -46,12 +46,12 @@ var OptionsMenu = {
 	preload: function (game) {
 		this.game = game;
 
-		this.game.music.load('assets/Music/Gameplay.wav');
+		this.game.music.load('assets/music/gameplay.wav');
 
 		// bg tile
 		this.game.load.spritesheet(
 			'bg_tile',
-			'assets/tiles/Water.png',
+			'assets/images/tiles/water_1.png',
 			32,
 			32
 		);
@@ -61,7 +61,7 @@ var OptionsMenu = {
 			button = this.buttons[i];
 			this.game.load.spritesheet(
 				button.name,
-				'assets/buttons/' + button.name + '.png',
+				'assets/images/buttons/' + button.name + '.png',
 				this.button_width,
 				this.button_height
 			);
