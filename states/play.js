@@ -24,9 +24,10 @@ var Play = {
 
         this.game.load.image('tiles', 'assets/images/super_mario.png');
     },
-    map = null
-    layer = null
+    
     create: function() {
+    	var map = null;
+    	var layer = null;
     	  game.stage.backgroundColor = '#787878';
 
     	    //  The 'mario' key here is the Loader key given in game.load.tilemap
