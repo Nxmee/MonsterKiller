@@ -8,12 +8,12 @@ var Bar = function (game, x, y, width, height, progress) {
 
 	this.game.load.image(
 		'bar_background',
-		'assets/images/misc/background.png'
+		'assets/images/bars/background.png'
 	);
 
 	this.game.load.image(
 		'bar_bar',
-		'assets/images/misc/bar.png'
+		'assets/images/bars/bar.png'
 	);
 
 	this.draw = function () {

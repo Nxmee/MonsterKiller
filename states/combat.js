@@ -5,16 +5,16 @@ var Combat = {
         this.game = game;
         this.game.music.load('assets/music/battle_loop.wav');
 
-        this.exp_bar = new Bar(this.game, 50, 720 - 50, 620, 16, 0);
+        this.exp_bar = new Bar(this.game, 50, this.game.width - 50, this.game.width - 100, 16, 0);
 
         this.player_bar = new Bar(this.game, 50, 50, 100, 16, 1);
-        this.monster_bar = new Bar(this.game, 720 - 150, 50, 100, 16, 1);
+        this.monster_bar = new Bar(this.game, this.game.width - 150, 50, 100, 16, 1);
 
-        this.monster = new MonsterCombat(this.game, 'blobby');
+        this.monster = new MonsterCombat(this.game, this, 'blobby');
 
         this.game.load.spritesheet(
             'bg',
-            'assets/images/tiles/tree_1.png'
+            'assets/images/tiles/battle_bg.png'
         );
     },
 
