@@ -43,7 +43,7 @@ var Play = {
         map_data = [].concat.apply([], generate())
         console.log(map_data);
         template['layers']['data'] = map_data
-        game.load.tilemap('tilemap', 'assets/tiles/map.json'
+        game.load.tilemap('tilemap', null
 , template, Phaser.Tilemap.TILED_JSON);
         game.load.image('tiles', 'assets/tiles/tilesheet.png');
         /*this.game.loadspritesheet(
