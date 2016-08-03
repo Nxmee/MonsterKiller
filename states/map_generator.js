@@ -143,6 +143,7 @@ function scenery() {
 }
 
 function generate() {
+	map = [];
     generateMap()
     treeBorder()
     scenery()
