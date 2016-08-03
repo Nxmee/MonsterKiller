@@ -38,12 +38,12 @@ var MainMenu = {
 	preload: function (game) {
 		this.game = game;
 
-		this.game.music.load('assets/Music/Gameplay.wav');
+		this.game.music.load('assets/Music/Menu.wav');
 
 		// bg tile
 		this.game.load.spritesheet(
 			'bg_tile',
-			'assets/tiles/Dirt3.png',
+			'assets/tiles/Dirt2.png',
 			32,
 			32
 		);
@@ -88,6 +88,9 @@ var MainMenu = {
 				0
 			);
 		}
+
+		bar = new Bar(this.game, 0.75);
+		bar.draw();
 	},
 
 	update: function () {

@@ -106,7 +106,7 @@ function generateRiver() {
             }
         }
     } catch (err) {
-        pass
+//        pass
     }
 }
 
