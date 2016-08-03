@@ -10,7 +10,7 @@ var MainMenu = {
 		{
 			name: 'continue',
 			onclick: function () {
-				this.game.state.start('play');
+				this.game.state.start('combat');
 			}
 		},
 
@@ -38,12 +38,12 @@ var MainMenu = {
 	preload: function (game) {
 		this.game = game;
 
-		this.game.music.load('assets/Music/Menu.wav');
+		this.game.music.load('assets/music/menu.wav');
 
 		// bg tile
 		this.game.load.spritesheet(
 			'bg_tile',
-			'assets/tiles/Dirt2.png',
+			'assets/images/tiles/dirt_2.png',
 			32,
 			32
 		);
@@ -53,12 +53,11 @@ var MainMenu = {
 			button = this.buttons[i];
 			this.game.load.spritesheet(
 				button.name,
-				'assets/buttons/' + button.name + '.png',
+				'assets/images/buttons/' + button.name + '.png',
 				this.button_width,
 				this.button_height
 			);
-		}
-		
+		}		
 	},
 
 	create: function () {
@@ -88,9 +87,6 @@ var MainMenu = {
 				0
 			);
 		}
-
-		bar = new Bar(this.game, 0.75);
-		bar.draw();
 	},
 
 	update: function () {
