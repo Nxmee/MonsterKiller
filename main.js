@@ -1,23 +1,17 @@
 window.onload = function() {
 	var width  = 800;
 	var height = 600;
-
+	console.log("Before Play");
 	var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create });
 	game.state.add('main_menu',    MainMenu);
 	game.state.add('options_menu', OptionsMenu);
 	game.state.add('play',         Play);
 	game.state.add('combat',       Combat);
-
-	game.music = MusicPlayer;
-	game.music.init(game);
-
+	console.log("After Play");
 	game.options = {
 		sound: true,
 		music: true,
-		update: function () {
-			game.music.set_state(this.music);
-		}
-	}
+		
 
 	function preload () {
 	}
