@@ -30,7 +30,7 @@ var Combat = {
              new AttackButton(this.game, this, 'assets/images/buttons/sword.png',        0.85,  100),
 
             new DefenceButton(this.game, this, 'assets/images/buttons/heal.png',   function(){
-                this.conflict.combatants[1].hp += 20;
+                this.conflict.combatants[1].heal(20);
             }),
 
             new DefenceButton(this.game, this, 'assets/images/buttons/armour.png', function(){

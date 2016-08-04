@@ -16,6 +16,13 @@ var Combatant = function (){
 		this.check_alive();
 	};
 
+	this.heal = function(dmg) {
+		this.hp += dmg;
+		if (this.hp > this.total_hp) {
+			this.hp = this.total_hp;
+		}
+	}
+
 	this.opponent = function() {
 		var both = this.combat.combatants;
 		if (both[0] == this) {
