@@ -10,22 +10,12 @@ var Combat = {
 
         this.game.load.spritesheet(
             'monster_name',
-            'assets/images/Labels/name_' + this.monster.name + '.png'
+            'assets/images/labels/name_' + this.monster.name + '.png'
         );
 
         this.game.load.spritesheet(
             'hero_name',
-            'assets/images/Labels/name_hero.png'
-        );
-
-        this.game.load.spritesheet(
-            'monster_turn',
-            'assets/images/Lables/monster_turn.png'
-        );
-
-        this.game.load.spritesheet(
-            'hero_turn',
-            'assets/images/Lables/hero_turn.png'
+            'assets/images/labels/name_hero.png'
         );
 
         this.player_bar  = new Bar(this.game, 50,                    50, 100, 16, 1);
@@ -94,10 +84,6 @@ var Combat = {
 
         this.game.add.sprite(50,                    20, 'hero_name');
         this.game.add.sprite(this.game.width - 150, 20, 'monster_name');
-
-        this.game.add.sprite(this.game.width/2, 50,
-            this.turn == 0 ? 'hero_turn' : 'monster_turn'
-        );
     },
 
     change_turn: function() {
