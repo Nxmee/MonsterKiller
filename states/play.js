@@ -32,7 +32,7 @@ var template = {
     "version": 1,
     "width": 20
 }
-var bob = null
+var bob = null;
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
     game: null,
@@ -42,40 +42,37 @@ var Play = {
         this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
         map_data = [].concat.apply([], generate())
-        console.log(map_data);
         template['layers'][0]['data'] = map_data
-        console.log(template);
         map_data = [].concat.apply([], generate())
-        console.log(map_data);
-        // template['layers']['data'] = map_data
-        // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+            // template['layers']['data'] = map_data
+            // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-         this.game.load.spritesheet(
-             'player',
-             'assets/images/hero/hero.png',
-             16,
-             16
-         );
+        this.game.load.image('player', 'assets/images/hero/stationary.png');
+        this.game.load.image('blobby', 'assets/images/monsters/blobby/stationary.png');
     },
-    
+
     create: function() {
         this.game.music.play();
         var map = null;
         var layer = null;
-        bob = this.game.add.sprite(320,320,'player')
+        bob = this.game.add.sprite(320, 320, 'player');
         this.game.stage.backgroundColor = '#787878';
         map = this.game.add.tilemap('map1');
         map.addTilesetImage('tilesheet', 'tiles');
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
 
-
+        for (i = 0; i < generateN(5, 10); i++) {
+            x,
+            y = spawnmonster();
+            this.game.add.sprite(x, y, 'blobby');
+        }
     },
 
     update: function() {
-    	/*bob.x = this.game.input.mousePointer.x;
-    	bob.y = this.game.input.mousePointer.y;*/
+        /*bob.x = this.game.input.mousePointer.x;
+        bob.y = this.game.input.mousePointer.y;*/
     }
 };

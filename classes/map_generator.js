@@ -163,5 +163,3 @@ function generate() {
     doors();
     return map
 }
-
-console.log(generate())
