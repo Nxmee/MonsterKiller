@@ -82,7 +82,8 @@ var Play = {
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
         bob = this.game.add.sprite(320, 320, 'player');
-        bob.anchor.x
+        bob.anchor.x = 0.5;
+        bob.anchor.y = 0.5;
         for (i = 0; i < monsters.length; i++) {
             this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
         }
@@ -99,7 +100,7 @@ var Play = {
         	moveY = this.game.input.mousePointer.y;
         	var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x );
 			angle = angle * (180/Math.PI);
-			bob.angle = angle
+			bob.angle = angle + 90
         }
     }
 };
