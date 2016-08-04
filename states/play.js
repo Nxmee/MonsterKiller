@@ -40,6 +40,11 @@ var Play = {
 
     preload: function(game) {
         this.game = game;
+        //uncomment below for dynamic
+        map_data = [].concat.apply([], generate())
+        console.log(map_data);
+        template['layers'][0]['data'] = map_data
+        console.log(template);
         map_data = [].concat.apply([], generate())
         console.log(map_data);
        // template['layers']['data'] = map_data
