@@ -11,6 +11,9 @@ var MainMenu = {
 			name: 'continue',
 			onclick: function () {
 				this.game.state.start('combat');
+				this.game.monster = {
+					name: 'blobby'
+				};
 			}
 		},
 

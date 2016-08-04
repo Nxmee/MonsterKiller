@@ -3,9 +3,20 @@ var Combat = {
 
     preload: function(game) {
         this.game = game;
+        this.monster = this.game.monster;
         this.game.music.load('assets/music/battle_loop.wav');
 
         this.exp_bar = new Bar(this.game, 50, this.game.width - 50, this.game.width - 100, 16, 0);
+
+        this.game.load.spritesheet(
+            'monster_name',
+            'assets/images/Lables/name_' + this.monster.name + '.png'
+        );
+
+        this.game.load.spritesheet(
+            'hero_name',
+            'assets/images/Lables/name_hero.png'
+        );
 
         this.player_bar  = new Bar(this.game, 50,                    50, 100, 16, 1);
         this.monster_bar = new Bar(this.game, this.game.width - 150, 50, 100, 16, 1);
@@ -70,6 +81,9 @@ var Combat = {
         if (this.combatants[0].is_turn()){
             this.combatants[0].take_turn();
         }
+
+        this.game.add.sprite(50,                    20, 'hero_name');
+        this.game.add.sprite(this.game.width - 150, 20, 'monster_name');
     },
 
     change_turn: function() {
