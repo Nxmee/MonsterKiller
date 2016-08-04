@@ -1,4 +1,4 @@
-bvar Bar = function (game, x, y, width, height, progress) {
+var Bar = function (game, x, y, width, height, progress) {
 	this.game     = game;
 	this.x        = x;
 	this.y        = y;
