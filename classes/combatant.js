@@ -1,12 +1,27 @@
 var Combatant = function (){
+	this.dr = 0;
+
 	this.attack_value = function (dmg) {
 		this.opponent().damage(dmg);
 	};
 
 	this.damage = function (dmg) {
-		this.hp -= dmg;
+		this.dr -= dmg;
+
+		if (this.dr < 0){
+			this.hp += this.dr;
+			this.dr = 0;
+		}
+		
 		this.check_alive();
 	};
+
+	this.heal = function(dmg) {
+		this.hp += dmg;
+		if (this.hp > this.total_hp) {
+			this.hp = this.total_hp;
+		}
+	}
 
 	this.opponent = function() {
 		var both = this.combat.combatants;

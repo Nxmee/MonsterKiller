@@ -20,7 +20,16 @@ var MonsterCombat = function (game, combat, type) {
 	};
 
 	this.attack = function(){
-		this.attack_value(20);
+		this.attack_value(10);
+	};
+
+	this.take_turn = function(){
+		this.attack();
+		this.combat.change_turn();
+	};
+
+	this.is_turn = function(){
+		return this.combat.turn == 1;
 	};
 }
 
