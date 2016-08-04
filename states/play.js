@@ -40,6 +40,7 @@ var diffX = 0;
 var diffY = 0;
 var mouseclick = false;
 var monsters = [];
+var monstersprites = null;
 var merchant = [];
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
@@ -51,7 +52,8 @@ var Play = {
         //uncomment below for dynamic
         map_data = [].concat.apply([], generate())
         template['layers'][0]['data'] = map_data
-        map_data = [].concat.apply([], generate())
+        map_data = [].concat.apply([], generate());
+        monstersprites = this.game.add.group();
         for (i = 0; i < generateN(2, 5); i++) {
             x,
             y = spawnmonster(map_data);
@@ -69,12 +71,15 @@ var Play = {
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
         this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
-        this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png');
-        this.game.load.image('merchant', 'assets/images/Merchant/Merchant_Talking.png');
+        this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png?' + n);
+        this.game.load.image('blobby', 'assets/images/monsters/blobby/stationary.png?' + n);
+        this.game.load.image('bat', 'assets/images/monsters/bat/bat.png?' + n);
+        this.game.load.image('spider', 'assets/images/monsters/spider/walking.png?' + n);
+        this.game.load.image('merchant', 'assets/images/Merchant/Merchant_Talking.png?' + n);
     },
 
     create: function() {
-    	//this.game = game;
+        //this.game = game;
         this.game.music.play();
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         var map = null;
@@ -88,60 +93,83 @@ var Play = {
         bob.anchor.x = 0.5;
         bob.anchor.y = 0.5;
         for (i = 0; i < monsters.length; i++) {
-            this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
+            var monstertype = 0;
+            console.log(monstertype);
+            switch (monstertype) {
+                case 0:
+                    console.log("0")
+                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'slime');
+                    this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
+                    break;
+                case 1:
+                    console.log("1")
+                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'blobby');
+                    this.game.add.sprite(monsters[i][0], monsters[i][1], 'blobby');
+                    break;
+                case 2:
+                    console.log("2")
+                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'bat');
+                    this.game.add.sprite(monsters[i][0], monsters[i][1], 'bat');
+                    break;
+                case 3:
+                    console.log("3")
+                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'spider');
+                    this.game.add.sprite(monsters[i][0], monsters[i][1], 'spider');
+                    break;
+                    // monstersprites.create(monsters[i][0], monsters[i][1], 'spider');
+            };
         }
         this.game.add.sprite(merchant[0], merchant[1], 'merchant')
-
     },
 
     update: function() {
-    	//this.game = game;
-       // bob.x = this.game.input.mousePointer.x;
-       // bob.y = this.game.input.mousePointer.y;
+        //this.game = game;
+        // bob.x = this.game.input.mousePointer.x;
+        // bob.y = this.game.input.mousePointer.y;
         if (moving != true) {
             //track location of cursor
-        	moveX = Math.round(this.game.input.mousePointer.x/32)*32;
-        	moveY = Math.round(this.game.input.mousePointer.y/32)*32;
+            moveX = Math.floor(this.game.input.mousePointer.x / 32) * 32 + 8;
+            moveY = Math.floor(this.game.input.mousePointer.y / 32) * 32 + 8;
             //looking at cursor
-        	var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x );
-			angle = angle * (180/Math.PI);
-			bob.angle = angle + 90;
-        }
-        else {
+            var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
+            angle = angle * (180 / Math.PI);
+            bob.angle = angle + 90;
+        } else {
             if (moveX > bob.x) {
                 bob.x = bob.x + 1;
-            }
-            else if (moveX < bob.x) {
+            } else if (moveX < bob.x) {
                 bob.x = bob.x - 1;
             }
             if (moveY > bob.y) {
                 bob.y = bob.y + 1;
-            }
-            else if (moveY < bob.y) {
+            } else if (moveY < bob.y) {
                 bob.y = bob.y - 1;
             }
             if (moveY == bob.y && moveX == bob.x) {
                 moving = false;
             }
         }
-        if(this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
-        	mouseclick = true;
-        	moving = true;
-            if (moveX > bob.X) {
-            diffX = moveX - bob.X;
+        if (this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
+            mouseclick = true;
+            moving = true;
+            moveX = Math.round(this.game.input.mousePointer.x / 32) * 32;
+            moveY = Math.round(this.game.input.mousePointer.y / 32) * 32;
+            /*if (moveX > bob.X) {
+            diffX = Math.round(moveX - bob.X);
             }
             else {
-            diffX = bob.X - moveX;    
+            diffX = Math.round(bob.X - moveX);    
             }
             if (moveY > bob.Y) {
-            diffY = moveY - bob.Y;
+            diffY = Math.round(moveY - bob.Y);
             }
             else {
-            diffY = bob.Y - moveY;    
-            }
+            diffY = Math.round(bob.Y - moveY);    
+            }*/
+
         }
         if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
-        	mouseclick = false;
+            mouseclick = false;
         }
     }
 };
