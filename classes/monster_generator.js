@@ -1,7 +1,7 @@
-function spawnmonster() {
+function spawnmonster(map_data) {
     x = generateN(1, map_width - 2)
     y = generateN(1, map_length - 2)
-    while (map[y][x] > 3) {
+    while (map_data[y][x] > 3) {
         y = generateN(1, map_length - 2)
         x = generateN(1, map_width - 2)
     }
