@@ -50,7 +50,7 @@ var Play = {
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
         this.game.load.image('player', 'assets/images/hero/stationary.png');
-        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/walking.png');
+        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/stationary.png');
 
     },
 
