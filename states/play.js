@@ -1,7 +1,7 @@
 var template = {
     "height": 20,
     "layers": [{
-        "data": [4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 2, 1, 2, 1, 2, 3, 1, 2, 3, 3, 3, 2, 1, 2, 1, 2, 1, 2, 6, 4, 2, 3, 3, 2, 1, 1, 1, 3, 1, 1, 3, 1, 3, 2, 1, 2, 2, 3, 4, 4, 1, 1, 1, 3, 2, 2, 1, 3, 3, 2, 2, 1, 1, 3, 2, 3, 2, 3, 6, 4, 2, 3, 1, 3, 1, 1, 2, 3, 3, 2, 2, 1, 1, 1, 2, 3, 1, 3, 4, 4, 3, 3, 2, 2, 3, 4, 2, 1, 1, 1, 3, 2, 3, 3, 6, 1, 2, 1, 6, 4, 1, 1, 2, 3, 1, 3, 3, 3, 3, 3, 1, 1, 1, 3, 3, 2, 3, 2, 6, 4, 1, 2, 2, 3, 1, 2, 3, 2, 2, 2, 3, 3, 2, 1, 1, 1, 3, 3, 5, 4, 1, 1, 2, 2, 3, 2, 1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 3, 3, 4, 4, 1, 2, 1, 1, 2, 1, 2, 1, 1, 3, 7, 3, 3, 1, 4, 2, 3, 1, 5, 4, 1, 2, 1, 3, 1, 2, 4, 1, 2, 3, 7, 2, 3, 2, 1, 2, 1, 3, 4, 4, 2, 1, 3, 2, 3, 2, 2, 3, 1, 7, 7, 2, 1, 3, 2, 3, 2, 3, 6, 4, 1, 2, 3, 3, 1, 2, 2, 1, 7, 7, 7, 1, 1, 2, 1, 2, 2, 1, 5, 4, 3, 2, 1, 1, 3, 2, 3, 2, 7, 1, 3, 3, 3, 3, 1, 2, 3, 1, 5, 4, 2, 1, 1, 1, 1, 3, 3, 2, 7, 3, 1, 2, 1, 2, 2, 2, 2, 1, 5, 5, 3, 2, 3, 2, 1, 1, 1, 2, 7, 1, 1, 3, 1, 2, 3, 2, 1, 3, 5, 6, 3, 3, 1, 3, 1, 3, 3, 3, 7, 3, 3, 1, 2, 2, 3, 1, 3, 1, 6, 6, 5, 4, 5, 5, 6, 4, 4, 4, 5, 4, 5, 4, 6, 5, 4, 6, 6, 6, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "data": [],
         "height": 20,
         "name": "Layer1",
         "opacity": 1,
@@ -32,7 +32,11 @@ var template = {
     "version": 1,
     "width": 20
 }
-var bob = null
+var bob = null;
+var moving = null;
+var moveX = 0;
+var moveY = 0;
+var monsters = [];
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
     game: null,
@@ -44,32 +48,48 @@ var Play = {
         map_data = [].concat.apply([], generate())
         template['layers'][0]['data'] = map_data
         map_data = [].concat.apply([], generate())
-            // template['layers']['data'] = map_data
-            // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+        for (i = 0; i < generateN(2, 5); i++) {
+            x,
+            y = spawnmonster(map_data);
+            monsters.push([x, y])
+        }
+        // template['layers']['data'] = map_data
+        // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-        this.game.load.image('player', 'assets/images/hero/stationary.png');
-        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/stationary.png');
-
+        this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
+        this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png');
     },
 
     create: function() {
+    	//this.game = game;
         this.game.music.play();
+        game.physics.startSystem(Phaser.Physics.ARCADE);
         var map = null;
         var layer = null;
-        bob = this.game.add.sprite(320, 320, 'player')
         this.game.stage.backgroundColor = '#787878';
         map = this.game.add.tilemap('map1');
         map.addTilesetImage('tilesheet', 'tiles');
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
-
+        bob = this.game.add.sprite(320, 320, 'player');
+        for (i = 0; i < monsters.length; i++) {
+            this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
+        }
 
     },
 
     update: function() {
-        /*bob.x = this.game.input.mousePointer.x;
-        bob.y = this.game.input.mousePointer.y;*/
+    	//this.game = game;
+       // bob.x = this.game.input.mousePointer.x;
+       // bob.y = this.game.input.mousePointer.y;
+        if (moving != true) {
+        	moveX = this.game.input.mousePointer.x;
+        	moveY = this.game.input.mousePointer.y;
+        	var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x );
+			angle = angle * (180/Math.PI);
+			bob.angle = angle
+        }
     }
 };

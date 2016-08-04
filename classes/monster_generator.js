@@ -1,19 +1,11 @@
-function spawnmonster() {
+function spawnmonster(map_data) {
     x = generateN(1, map_width - 2)
     y = generateN(1, map_length - 2)
-    while (y > 3) {
+    while (map_data[y][x] > 3 || map_data[y + 1][x + 1] > 3 || map_data[y][x + 1] > 3 || map_data[y + 1][x] > 3 || map_data[y - 1][x - 1] > 3 || map_data[y][x - 1] > 3 || map_data[y - 1][x] > 3) {
         y = generateN(1, map_length - 2)
-    }
-    while (x > 3) {
         x = generateN(1, map_width - 2)
     }
-    x = x * 20
-    y = y * 20
+    x = x * 32
+    y = y * 32
     return x, y
-}
-
-for (i = 0; i < randomN(10, 20); i++) {
-    x,
-    y = spawnmonster();
-    game.add.sprite(x, y, 'blobbyw');
 }

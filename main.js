@@ -2,7 +2,7 @@ window.onload = function() {
 	var width  = 640;
 	var height = 640;
 
-	var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create });
+	var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 	game.state.add('main_menu',    MainMenu);
 	game.state.add('options_menu', OptionsMenu);
 	game.state.add('play',         Play);
