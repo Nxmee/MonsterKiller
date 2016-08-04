@@ -106,7 +106,7 @@ function generateRiver() {
             }
         }
     } catch (err) {
-//        pass
+        //        pass
     }
 }
 
@@ -142,14 +142,22 @@ function scenery() {
     }
 }
 
+function doors() {
+    y1 = generateN(4, map_length - 5)
+    y2 = generateN(4, map_length - 5)
+    map[y1][0] = 8
+    map[y2][map_width - 1] = 9
+}
+
 function generate() {
-	map = [];
+    map = [];
     generateMap()
     treeBorder()
     scenery()
     for (i = 0; i < generateN(3, 5); i++) {
         generateRiver()
     }
+    doors();
     return map
 }
 
