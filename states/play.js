@@ -56,13 +56,15 @@ var Play = {
              'player',
              'assets/images/hero/stationary.png'
              );
+        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/walking.png');
+      
     },
-    
+
     create: function() {
         this.game.music.play();
         var map = null;
         var layer = null;
-        bob = this.game.add.sprite(320,320,'player')
+        bob = this.game.add.sprite(320, 320, 'player')
         this.game.stage.backgroundColor = '#787878';
         map = this.game.add.tilemap('map1');
         map.addTilesetImage('tilesheet', 'tiles');
@@ -73,7 +75,7 @@ var Play = {
     },
 
     update: function() {
-    	/*bob.x = this.game.input.mousePointer.x;
-    	bob.y = this.game.input.mousePointer.y;*/
+        /*bob.x = this.game.input.mousePointer.x;
+        bob.y = this.game.input.mousePointer.y;*/
     }
 };
