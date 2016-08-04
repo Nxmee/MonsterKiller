@@ -40,6 +40,7 @@ var diffX = 0;
 var diffY = 0;
 var mouseclick = false;
 var monsters = [];
+var monsterssprites = null;
 var merchant = [];
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
@@ -50,8 +51,9 @@ var Play = {
         this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
         map_data = [].concat.apply([], generate())
-        template['layers'][0]['data'] = map_data
-        map_data = [].concat.apply([], generate())
+        template['layers'][0]['data'] = map_data;
+        map_data = [].concat.apply([], generate());
+        monsterssprites = this.game.add.group();
         for (i = 0; i < generateN(2, 5); i++) {
             x,
             y = spawnmonster(map_data);
@@ -69,8 +71,11 @@ var Play = {
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
         this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
-        this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png');
-        this.game.load.image('merchant', 'assets/images/Merchant/Merchant_Talking.png');
+        this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png?'+ n);
+        this.game.load.image('blobby', 'assets/images/monsters/blobby/stationary.png?'+ n);
+        this.game.load.image('bat', 'assets/images/monsters/bat/bat.png?'+ n);
+        this.game.load.image('spider', 'assets/images/monsters/spider/walking.png?'+ n);
+        this.game.load.image('merchant', 'assets/images/Merchant/Merchant_Talking.png?'+ n);
     },
 
     create: function() {
@@ -88,7 +93,19 @@ var Play = {
         bob.anchor.x = 0.5;
         bob.anchor.y = 0.5;
         for (i = 0; i < monsters.length; i++) {
-            this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
+            var monstertype = round(Math.random * 3) 
+            switch (monstertype){
+                case 0: 
+                    monsterssprites.create(monsters[i][0], monsters[i][1], 'slime');
+                case 1: 
+                    monsterssprites.create(monsters[i][0], monsters[i][1], 'blobby');
+                case 2: 
+                    monsterssprites.create(monsters[i][0], monsters[i][1], 'bat');
+                case 03: 
+                    monsterssprites.create(monsters[i][0], monsters[i][1], 'spider');
+
+            }
+           
         }
         this.game.add.sprite(merchant[0], merchant[1], 'merchant')
 
@@ -127,18 +144,8 @@ var Play = {
         if(this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
         	mouseclick = true;
         	moving = true;
-            if (moveX > bob.X) {
-            diffX = moveX - bob.X;
-            }
-            else {
-            diffX = bob.X - moveX;    
-            }
-            if (moveY > bob.Y) {
-            diffY = moveY - bob.Y;
-            }
-            else {
-            diffY = bob.Y - moveY;    
-            }
+            moveX = Math.round(this.game.input.mousePointer.x/32)*32;
+            moveY = Math.round(this.game.input.mousePointer.y/32)*32;
         }
         if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
         	mouseclick = false;
