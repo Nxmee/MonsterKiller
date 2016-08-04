@@ -65,7 +65,7 @@ var Play = {
     create: function() {
     	//this.game = game;
         this.game.music.play();
-        game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
         var map = null;
         var layer = null;
         this.game.stage.backgroundColor = '#787878';
@@ -74,6 +74,7 @@ var Play = {
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
         bob = this.game.add.sprite(320, 320, 'player');
+        bob.anchor.x
         for (i = 0; i < monsters.length; i++) {
             this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
         }
