@@ -40,6 +40,7 @@ var Play = {
 
     preload: function(game) {
         this.game = game;
+        this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
         map_data = [].concat.apply([], generate())
         console.log(map_data);
@@ -51,22 +52,24 @@ var Play = {
        // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png');
-        /*this.game.loadspritesheet(
+       /* this.game.load.spritesheet(
             'player',
-            'assets/bob/bob_all',
+            'assets/images/hero/hero.png',
             16,
             16
         );*/
     },
     create: function() {
+    	this.game.music.play();
     	var map = null;
     	var layer = null;
+    	//var player = this.game.add.sprite('player')
     	this.game.stage.backgroundColor = '#787878';
         map = this.game.add.tilemap('map1');
         map.addTilesetImage('tilesheet', 'tiles');
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
-     
+     	
 
     },
 
