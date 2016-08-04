@@ -1,0 +1,95 @@
+body {
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.background-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: url("../img/game.png");
+  background-size: cover;
+  z-index: -1;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+.navbar-spacer {
+  width: 100%;
+  background: #fff;
+  z-index: 99;
+  border-top: 1px solid #000;
+}
+h1 {
+  margin-top: 1rem;
+}
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+.subtitle {
+  margin-top: 18rem;
+}
+.button-primary {
+  width: 86.922px;
+  *zoom: 1;
+  width: auto;
+  max-width: 1440px;
+  float: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.button-primary:before,
+.button-primary:after {
+  content: '';
+  display: table;
+}
+.button-primary:after {
+  clear: both;
+}
+#mailing {
+  margin-top: 8rem;
+  margin-left: 0;
+  margin-right: 0;
+  *zoom: 1;
+  width: auto;
+  max-width: 1440px;
+  float: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+#mailing:before,
+#mailing:after {
+  content: '';
+  display: table;
+}
+#mailing:after {
+  clear: both;
+}
+#mailinginput {
+  width: 20% !important;
+  display: inline-block;
+  margin: 0;
+  text-indent: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#submit {
+  padding-top: 1px;
+  display: inline-block;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin: 0;
+}
