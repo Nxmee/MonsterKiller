@@ -36,6 +36,8 @@ var bob = null;
 var moving = null;
 var moveX = 0;
 var moveY = 0;
+var diffX = 0;
+var diffY = 0;
 var mouseclick = false;
 var monsters = [];
 var merchant = [];
@@ -97,16 +99,46 @@ var Play = {
        // bob.x = this.game.input.mousePointer.x;
        // bob.y = this.game.input.mousePointer.y;
         if (moving != true) {
-        	moveX = this.game.input.mousePointer.x;
-        	moveY = this.game.input.mousePointer.y;
+            //track location of cursor
+        	moveX = Math.round(this.game.input.mousePointer.x/32)*32;
+        	moveY = Math.round(this.game.input.mousePointer.y/32)*32;
+            //looking at cursor
         	var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x );
 			angle = angle * (180/Math.PI);
 			bob.angle = angle + 90;
         }
+        else {
+            if (moveX > bob.x) {
+                bob.x = bob.x + 1;
+            }
+            else if (moveX < bob.x) {
+                bob.x = bob.x - 1;
+            }
+            if (moveY > bob.y) {
+                bob.y = bob.y + 1;
+            }
+            else if (moveY < bob.y) {
+                bob.y = bob.y - 1;
+            }
+            if (moveY == bob.y && moveX == bob.x) {
+                moving = false;
+            }
+        }
         if(this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
         	mouseclick = true;
         	moving = true;
-
+            if (moveX > bob.X) {
+            diffX = moveX - bob.X;
+            }
+            else {
+            diffX = bob.X - moveX;    
+            }
+            if (moveY > bob.Y) {
+            diffY = moveY - bob.Y;
+            }
+            else {
+            diffY = bob.Y - moveY;    
+            }
         }
         if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
         	mouseclick = false;
