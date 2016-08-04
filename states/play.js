@@ -55,7 +55,7 @@ var Play = {
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-        this.game.load.image('player', 'assets/images/hero/stationary.png');
+        this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
         this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png');
     },
 
@@ -76,7 +76,7 @@ var Play = {
     },
 
     update: function() {
-        /*bob.x = this.game.input.mousePointer.x;
-        bob.y = this.game.input.mousePointer.y;*/
+        bob.x = this.game.input.mousePointer.x;
+        bob.y = this.game.input.mousePointer.y;
     }
 };
