@@ -64,7 +64,7 @@ var Play = {
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
 
-        for (i = 0; i < generateN(10, 15); i++) {
+        for (i = 0; i < generateN(5, 10); i++) {
             x,
             y = spawnmonster();
             this.game.add.sprite(x, y, 'blobby');
