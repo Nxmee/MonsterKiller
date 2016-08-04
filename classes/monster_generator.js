@@ -7,7 +7,7 @@ function spawnmonster() {
     while (x > 3) {
         x = generateN(1, map_width - 2)
     }
-    return y, x
+    x = x * 20
+    y = y * 20
+    return x, y
 }
-
-spawnmonster()
