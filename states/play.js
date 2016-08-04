@@ -33,6 +33,9 @@ var template = {
     "width": 20
 }
 var bob = null;
+var moving = null;
+var moveX = 0;
+var moveY = 0;
 var monsters = [];
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
@@ -60,7 +63,9 @@ var Play = {
     },
 
     create: function() {
+    	//this.game = game;
         this.game.music.play();
+        game.physics.startSystem(Phaser.Physics.ARCADE);
         var map = null;
         var layer = null;
         this.game.stage.backgroundColor = '#787878';
@@ -76,7 +81,15 @@ var Play = {
     },
 
     update: function() {
-        bob.x = this.game.input.mousePointer.x;
-        bob.y = this.game.input.mousePointer.y;
+    	//this.game = game;
+       // bob.x = this.game.input.mousePointer.x;
+       // bob.y = this.game.input.mousePointer.y;
+        if (moving != true) {
+        	moveX = this.game.input.mousePointer.x;
+        	moveY = this.game.input.mousePointer.y;
+        	var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x );
+			angle = angle * (180/Math.PI);
+			bob.angle = angle
+        }
     }
 };
