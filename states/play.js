@@ -52,7 +52,7 @@ var Play = {
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-        game.load.image('blobbyw', 'assets/images/monsters/blobby/walking.png');
+        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/walking.png');
         this.game.load.spritesheet(
             'player',
             'assets/images/hero/hero.png',

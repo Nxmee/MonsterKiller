@@ -11,3 +11,9 @@ function spawnmonster() {
     y = y * 20
     return x, y
 }
+
+for (i = 0; i < randomN(10, 20); i++) {
+    x,
+    y = spawnmonster();
+    game.add.sprite(x, y, 'blobbyw');
+}
