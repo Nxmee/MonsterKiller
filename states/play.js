@@ -42,19 +42,16 @@ var Play = {
         this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
         map_data = [].concat.apply([], generate())
-        console.log(map_data);
         template['layers'][0]['data'] = map_data
-        console.log(template);
         map_data = [].concat.apply([], generate())
-        console.log(map_data);
-        // template['layers']['data'] = map_data
-        // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+            // template['layers']['data'] = map_data
+            // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-         this.game.load.image('player','assets/images/hero/stationary.png');
-        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/walking.png');
-      
+        this.game.load.image('player', 'assets/images/hero/stationary.png');
+        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/stationary.png');
+
     },
 
     create: function() {
