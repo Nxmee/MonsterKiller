@@ -32,7 +32,7 @@ var template = {
     "version": 1,
     "width": 20
 }
-var bob = null
+var bob = null;
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
     game: null,
@@ -50,8 +50,7 @@ var Play = {
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
         this.game.load.image('player', 'assets/images/hero/stationary.png');
-        this.game.load.image('blobbyw', 'assets/images/monsters/blobby/stationary.png');
-
+        this.game.load.image('blobby', 'assets/images/monsters/blobby/stationary.png');
     },
 
     create: function() {
@@ -65,7 +64,11 @@ var Play = {
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
 
-
+        for (i = 0; i < generateN(10, 15); i++) {
+            x,
+            y = spawnmonster();
+            this.game.add.sprite(x, y, 'blobby');
+        }
     },
 
     update: function() {
