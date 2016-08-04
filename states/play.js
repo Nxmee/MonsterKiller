@@ -56,23 +56,23 @@ var Play = {
             n = generateN(1, 2000).toString();
             this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
             this.game.load.image('player', 'assets/images/hero/stationary.png');
-            this.game.load.image('blobby', 'assets/images/monsters/slime/Slime.png');
+            this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png');
         },
 
-    create: function() {
-        this.game.music.play();
-        var map = null;
-        var layer = null;
-        this.game.stage.backgroundColor = '#787878';
-        map = this.game.add.tilemap('map1');
-        map.addTilesetImage('tilesheet', 'tiles');
-        layer = map.createLayer('Layer1');
-        layer.resizeWorld();
-        bob = this.game.add.sprite(320, 320, 'player');
-        for (i = 0; i < monsters.length; i++) {
-                this.game.add.sprite(monsters[i][0], [monsters[i][1], 'blobby');
-                }
-            },
+        create: function() {
+            this.game.music.play();
+            var map = null;
+            var layer = null;
+            this.game.stage.backgroundColor = '#787878';
+            map = this.game.add.tilemap('map1');
+            map.addTilesetImage('tilesheet', 'tiles');
+            layer = map.createLayer('Layer1');
+            layer.resizeWorld();
+            bob = this.game.add.sprite(320, 320, 'player');
+            for (i = 0; i < monsters.length; i++) {
+                this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
+            }
+        },
 
     },
 
@@ -81,4 +81,3 @@ var Play = {
         bob.y = this.game.input.mousePointer.y;*/
     }
 };
-
