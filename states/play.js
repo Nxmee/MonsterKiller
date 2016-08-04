@@ -36,6 +36,7 @@ var bob = null;
 var moving = null;
 var moveX = 0;
 var moveY = 0;
+var mouseclick = false;
 var monsters = [];
 var merchant = [];
 var Play = {
@@ -100,7 +101,15 @@ var Play = {
         	moveY = this.game.input.mousePointer.y;
         	var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x );
 			angle = angle * (180/Math.PI);
-			bob.angle = angle + 90
+			bob.angle = angle + 90;
+        }
+        if(game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
+        	mouseclick = true;
+        	moving = true;
+
+        }
+        if (game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
+        	mouseclick = false;
         }
     }
 };
