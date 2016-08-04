@@ -15,7 +15,7 @@ var Combat = {
 
         this.game.load.spritesheet(
             'hero_name',
-            'assets/images/Lables/name_hero.png'
+            'assets/images/Labels/name_hero.png'
         );
 
         this.player_bar  = new Bar(this.game, 50,                    50, 100, 16, 1);
