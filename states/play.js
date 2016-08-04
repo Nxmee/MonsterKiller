@@ -103,12 +103,12 @@ var Play = {
 			angle = angle * (180/Math.PI);
 			bob.angle = angle + 90;
         }
-        if(game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
+        if(this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
         	mouseclick = true;
         	moving = true;
 
         }
-        if (game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
+        if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
         	mouseclick = false;
         }
     }
