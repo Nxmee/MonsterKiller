@@ -21,11 +21,17 @@ var Combat = {
         );
 
         this.buttons = [
-            new AttackButton(this.game, this, 'assets/images/buttons/Punch_Button.png',        5, 0),
-            new AttackButton(this.game, this, 'assets/images/buttons/Pointy_Stick_Button.png', 10, 0),
-            new AttackButton(this.game, this, 'assets/images/buttons/Kick_Button.png',         15, 0),
-            new AttackButton(this.game, this, 'assets/images/buttons/Axe_Button.png',          50, 0),
-            new AttackButton(this.game, this, 'assets/images/buttons/Sword_Button.png',        100, 0)
+             new AttackButton(this.game, this, 'assets/images/buttons/Punch_Button.png',        5,   0),
+             new AttackButton(this.game, this, 'assets/images/buttons/Pointy_Stick_Button.png', 10,  0),
+             new AttackButton(this.game, this, 'assets/images/buttons/Kick_Button.png',         15,  0),
+             new AttackButton(this.game, this, 'assets/images/buttons/axe_buton.png',           50,  0),
+             new AttackButton(this.game, this, 'assets/images/buttons/Sword_Button.png',        100, 0),
+
+            new DefenceButton(this.game, this, 'assets/images/buttons/Block_Button.png',        5,   0),
+            new DefenceButton(this.game, this, 'assets/images/buttons/dodge_Button.png',        10,  0),
+            new DefenceButton(this.game, this, 'assets/images/buttons/Block_Button.png',        15,  0),
+            new DefenceButton(this.game, this, 'assets/images/buttons/Block_Button.png',        50,  0),
+            new DefenceButton(this.game, this, 'assets/images/buttons/Hide_Button.png',         100, 0)
         ];
     },
 
@@ -54,11 +60,7 @@ var Combat = {
         this.exp_bar.progress += 0.0005;
 
         for (var i = this.buttons.length - 1; i >= 0; i--) {
-            var exp_bar_width = this.exp_bar.width;
-            var button_width = 100; // REPEATED INFORMATION
-            var buttons = this.buttons.length;
-            var spacing = (exp_bar_width - (buttons * button_width)) / (buttons - 1);
-            this.buttons[i].draw((i * (button_width + spacing)) + 50, this.game.height - 150);
+            this.buttons[i].draw(i);
         }
     }
 };
