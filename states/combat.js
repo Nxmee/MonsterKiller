@@ -10,12 +10,12 @@ var Combat = {
 
         this.game.load.spritesheet(
             'monster_name',
-            'assets/images/Lables/name_' + this.monster.name + '.png'
+            'assets/images/Labels/name_' + this.monster.name + '.png'
         );
 
         this.game.load.spritesheet(
             'hero_name',
-            'assets/images/Lables/name_hero.png'
+            'assets/images/Labels/name_hero.png'
         );
 
         this.game.load.spritesheet(
