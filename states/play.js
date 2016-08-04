@@ -52,19 +52,21 @@ var Play = {
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-         this.game.load.spritesheet(
-             'player',
-             'assets/images/hero/hero.png',
-             16,
-             16
-         );
+        game.load.image('blobbyw', 'assets/images/monsters/blobby/walking.png');
+
+        this.game.load.spritesheet(
+            'player',
+            'assets/images/hero/hero.png',
+            16,
+            16
+        );
     },
-    
+
     create: function() {
         this.game.music.play();
         var map = null;
         var layer = null;
-        bob = this.game.add.sprite(320,320,'player')
+        bob = this.game.add.sprite(320, 320, 'player')
         this.game.stage.backgroundColor = '#787878';
         map = this.game.add.tilemap('map1');
         map.addTilesetImage('tilesheet', 'tiles');
@@ -75,7 +77,7 @@ var Play = {
     },
 
     update: function() {
-    	/*bob.x = this.game.input.mousePointer.x;
-    	bob.y = this.game.input.mousePointer.y;*/
+        /*bob.x = this.game.input.mousePointer.x;
+        bob.y = this.game.input.mousePointer.y;*/
     }
 };
