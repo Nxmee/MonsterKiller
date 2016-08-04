@@ -145,6 +145,13 @@ function scenery() {
 function doors() {
     y1 = generateN(4, map_length - 5)
     y2 = generateN(4, map_length - 5)
+    while (map[y2][1] == 7) {
+        y2 = generateN(4, map_length - 5)
+    }
+    while (map[y1[map_width - 2]] == 7) {
+        y1 = generateN(4, map_length - 5)
+    }
+
     map[y1][0] = 8
     map[y2][map_width - 1] = 8
 }
@@ -154,7 +161,7 @@ function generate() {
     generateMap()
     treeBorder()
     scenery()
-    for (i = 0; i < generateN(3, 5); i++) {
+    for (i = 0; i < generateN(5, 7); i++) {
         generateRiver()
     }
     doors();
