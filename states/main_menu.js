@@ -12,7 +12,7 @@ var MainMenu = {
 			onclick: function () {
 				this.game.state.start('combat');
 				this.game.monster = {
-					name: 'blobby'
+					name: 'spider'
 				};
 			}
 		},

@@ -22,7 +22,7 @@ var Combat = {
         this.monster_bar = new Bar(this.game, this.game.width - 150, 50, 100, 16, 1);
 
         this.combatants = [
-            new MonsterCombat(this.game, this, 'blobby'),
+            new MonsterCombat(this.game, this, this.monster),
             new  PlayerCombat(this.game, this)
         ]
 
