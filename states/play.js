@@ -58,13 +58,12 @@ var Play = {
         this.game.music.play();
         var map = null;
         var layer = null;
-        bob = this.game.add.sprite(320, 320, 'player');
         this.game.stage.backgroundColor = '#787878';
         map = this.game.add.tilemap('map1');
         map.addTilesetImage('tilesheet', 'tiles');
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
-
+        bob = this.game.add.sprite(320, 320, 'player');
 
     },
 
