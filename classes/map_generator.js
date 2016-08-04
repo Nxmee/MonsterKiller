@@ -100,7 +100,7 @@ function generateRiver() {
                     if (map[y][x] > 3 && map[y][x] < 7) {
                         break
                     } else {
-                        map[y][x] = generateN(7, 9)
+                        map[y][x] = 7
                     }
                 }
             }
@@ -152,8 +152,8 @@ function doors() {
         y1 = generateN(4, map_length - 5)
     }
 
-    map[y1][0] = 8
-    map[y2][map_width - 1] = 8
+    map[y1][0] = 9
+    map[y2][map_width - 1] = 9
 }
 
 function generate() {
