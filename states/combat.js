@@ -15,23 +15,27 @@ var Combat = {
             new  PlayerCombat(this.game, this)
         ]
 
+        this.turn = 0;
+
         this.game.load.spritesheet(
             'bg',
             'assets/images/tiles/battle_bg.png'
         );
 
         this.buttons = [
-             new AttackButton(this.game, this, 'assets/images/buttons/Punch_Button.png',        5,   0),
-             new AttackButton(this.game, this, 'assets/images/buttons/Pointy_Stick_Button.png', 10,  0),
-             new AttackButton(this.game, this, 'assets/images/buttons/Kick_Button.png',         15,  0),
-             new AttackButton(this.game, this, 'assets/images/buttons/axe_buton.png',           50,  0),
-             new AttackButton(this.game, this, 'assets/images/buttons/Sword_Button.png',        100, 0),
+             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       -0.05,  2),
+             new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png',  0.25,  15),
+             new AttackButton(this.game, this, 'assets/images/buttons/kick.png',         0.44,  20),
+             new AttackButton(this.game, this, 'assets/images/buttons/axe.png',          0.65,  50),
+             new AttackButton(this.game, this, 'assets/images/buttons/sword.png',        0.85,  100),
 
-            new DefenceButton(this.game, this, 'assets/images/buttons/Block_Button.png',        5,   0),
-            new DefenceButton(this.game, this, 'assets/images/buttons/dodge_Button.png',        10,  0),
-            new DefenceButton(this.game, this, 'assets/images/buttons/Block_Button.png',        15,  0),
-            new DefenceButton(this.game, this, 'assets/images/buttons/Block_Button.png',        50,  0),
-            new DefenceButton(this.game, this, 'assets/images/buttons/Hide_Button.png',         100, 0)
+            new DefenceButton(this.game, this, 'assets/images/buttons/heal.png',   function(){
+                this.conflict.combatants[1].hp += 20;
+            }),
+
+            new DefenceButton(this.game, this, 'assets/images/buttons/armour.png', function(){
+                this.conflict.combatants[1].dr += 5;
+            })
         ];
     },
 
@@ -57,10 +61,18 @@ var Combat = {
         this.monster_bar.progress = this.combatants[0].hp_frac();
 
         this.exp_bar.draw();
-        this.exp_bar.progress += 0.0005;
+        this.exp_bar.progress = this.combatants[1].exp;
 
         for (var i = this.buttons.length - 1; i >= 0; i--) {
             this.buttons[i].draw(i);
         }
+
+        if (this.combatants[0].is_turn()){
+            this.combatants[0].take_turn();
+        }
+    },
+
+    change_turn: function() {
+        this.turn = this.turn == 0 ? 1 : 0;
     }
 };
