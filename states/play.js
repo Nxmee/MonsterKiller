@@ -45,7 +45,7 @@ var Play = {
         map_data = [].concat.apply([], generate())
         template['layers'][0]['data'] = map_data
         map_data = [].concat.apply([], generate())
-        for (i = 0; i < generateN(5, 10); i++) {
+        for (i = 0; i < generateN(2, 5); i++) {
             x,
             y = spawnmonster(map_data);
             monsters.push([x, y])
