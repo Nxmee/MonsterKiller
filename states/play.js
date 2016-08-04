@@ -32,7 +32,7 @@ var template = {
     "version": 1,
     "width": 20
 }
-
+var bob = null
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
     game: null,
@@ -52,18 +52,19 @@ var Play = {
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-        /* this.game.load.spritesheet(
+         this.game.load.spritesheet(
              'player',
              'assets/images/hero/hero.png',
              16,
              16
-         );*/
+         );
     },
+    
     create: function() {
         this.game.music.play();
         var map = null;
         var layer = null;
-        //var player = this.game.add.sprite('player')
+        bob = this.game.add.sprite(320,320,'player')
         this.game.stage.backgroundColor = '#787878';
         map = this.game.add.tilemap('map1');
         map.addTilesetImage('tilesheet', 'tiles');
@@ -73,5 +74,8 @@ var Play = {
 
     },
 
-    update: function() {}
+    update: function() {
+    	/*bob.x = this.game.input.mousePointer.x;
+    	bob.y = this.game.input.mousePointer.y;*/
+    }
 };
