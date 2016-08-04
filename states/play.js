@@ -37,6 +37,7 @@ var moving = null;
 var moveX = 0;
 var moveY = 0;
 var monsters = [];
+var merchant = [];
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
     game: null,
@@ -53,19 +54,26 @@ var Play = {
             y = spawnmonster(map_data);
             monsters.push([x, y])
         }
-        // template['layers']['data'] = map_data
-        // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+        x, y = spawnmonster(map_data)
+        while (!monsters.indexOf([x, y])) {
+            x,
+            y = spawnmonster(map_data)
+        }
+        merchant = [x, y]
+            // template['layers']['data'] = map_data
+            // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
         this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
         this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png');
+        this.game.load.image('merchant', 'assets/images/Merchant/Merchant_Talking.png');
     },
 
     create: function() {
     	//this.game = game;
         this.game.music.play();
-        game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
         var map = null;
         var layer = null;
         this.game.stage.backgroundColor = '#787878';
@@ -74,9 +82,12 @@ var Play = {
         layer = map.createLayer('Layer1');
         layer.resizeWorld();
         bob = this.game.add.sprite(320, 320, 'player');
+        bob.anchor.x = 0.5;
+        bob.anchor.y = 0.5;
         for (i = 0; i < monsters.length; i++) {
             this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
         }
+        this.game.add.sprite(merchant[0], merchant[1], 'merchant')
 
     },
 
@@ -89,7 +100,7 @@ var Play = {
         	moveY = this.game.input.mousePointer.y;
         	var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x );
 			angle = angle * (180/Math.PI);
-			bob.angle = angle
+			bob.angle = angle + 90
         }
     }
 };
