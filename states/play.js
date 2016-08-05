@@ -227,5 +227,11 @@ var Play = {
         if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
             mouseclick = false;
         }
+        if (mcollision) {
+            this.game.monster = {
+                name: mcollision
+            };
+            this.game.state.start('combat');
+        }
     }
 };
