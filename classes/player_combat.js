@@ -6,8 +6,8 @@ var PlayerCombat = function (game, combat, type) {
 	this.total_hp = 50;
 	this.hp       = this.total_hp;
 	this.exp      = 0;
-	this.heals    = 3;
-	this.shields  = 3;
+	this.heals    = 6;
+	this.shields  = 6;
 
 	var sound_types = [
 		'attacks/axe',
@@ -42,6 +42,8 @@ var PlayerCombat = function (game, combat, type) {
 	};
 
 	this.dmg_sound = function(){
+		var sound = game.add.audio('hero_hurt');
+		sound.play();
 	}
 
 	this.press_button = function (button) {
@@ -53,9 +55,17 @@ var PlayerCombat = function (game, combat, type) {
 	};
 
 	this.die = function (){
+		setTimeout(this.die_sound, 1000);
+		this.game.state.start('lose');
+	}
+
+	this.die_sound = function(){
+		var sound = game.add.audio('hero_dying');
+		sound.play();
 	}
 
 	this.won = function (){
+		this.game.combat_invoker.maps(); // restores
 	}
 }
 

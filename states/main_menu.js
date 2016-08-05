@@ -10,10 +10,6 @@ var MainMenu = {
 		{
 			name: 'continue',
 			onclick: function () {
-				this.game.monster = {
-					name: 'spider'
-				};
-				this.game.state.start('combat');
 			}
 		},
 

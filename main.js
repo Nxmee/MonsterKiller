@@ -7,6 +7,7 @@ window.onload = function() {
 	game.state.add('options_menu', OptionsMenu);
 	game.state.add('play',         Play);
 	game.state.add('combat',       Combat);
+	game.state.add('lose',         Lose);
 
 	game.music = MusicPlayer;
 	game.music.init(game);

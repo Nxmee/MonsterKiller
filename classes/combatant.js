@@ -2,7 +2,7 @@ var Combatant = function (){
 	this.dr = 0;
 
 	this.attack_value = function (dmg) {
-		this.opponent().damage(dmg);
+		this.opponent().damage(Math.random() * dmg);
 	};
 
 	this.damage = function (dmg) {
@@ -13,7 +13,7 @@ var Combatant = function (){
 			this.dr = 0;
 		}
 		
-		this.dmg_sound();
+		setTimeout(this.dmg_sound, 50);
 		this.check_alive();
 	};
 

@@ -6,6 +6,11 @@ var Combat = {
         this.monster = this.game.monster;
         this.game.music.load('assets/music/battle_loop.wav');
 
+        this.combatants = [
+            new MonsterCombat(this.game, this, this.monster),
+            new  PlayerCombat(this.game, this)
+        ];
+
         this.exp_bar = new Bar(this.game, 50, this.game.width - 50, this.game.width - 100, 16, 0);
 
         this.game.load.spritesheet(
@@ -21,11 +26,6 @@ var Combat = {
         this.player_bar  = new Bar(this.game, 50,                    50, 100, 16, 1);
         this.monster_bar = new Bar(this.game, this.game.width - 150, 50, 100, 16, 1);
 
-        this.combatants = [
-            new MonsterCombat(this.game, this, this.monster),
-            new  PlayerCombat(this.game, this)
-        ]
-
         this.turn = 0;
 
         this.game.load.spritesheet(
@@ -34,7 +34,7 @@ var Combat = {
         );
 
         this.buttons = [
-             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       'attacks/punch',        -0.05,  2),
+             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       'attacks/punch',        -0.025, 2),
              new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png', 'attacks/pointy_stick',  0.25,  15),
              new AttackButton(this.game, this, 'assets/images/buttons/kick.png',        'attacks/kick',          0.44,  20),
              new AttackButton(this.game, this, 'assets/images/buttons/axe.png',         'attacks/axe',           0.65,  50),
@@ -50,7 +50,7 @@ var Combat = {
             }),
 
             new DefenceButton(this.game, this, 'assets/images/buttons/shield.png', function(){
-                this.presser.dr += 50;
+                this.presser.dr += 25;
                 this.presser.shields -= 1;
             }, function() {
                 return this.presser.shields >= 1 && this.presser.dr == 0;
@@ -59,6 +59,8 @@ var Combat = {
     },
 
     create: function() {
+        this.game.add.audio('hero_greetings/' + this.monster.name);
+
         this.game.music.play();
 
         this.game.add.sprite(

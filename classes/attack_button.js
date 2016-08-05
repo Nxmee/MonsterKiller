@@ -8,7 +8,8 @@ var AttackButton = function (game, conflict, location, sound, required_exp, dama
 	this.press = function(){
 		if (this.can_press()) {
 			this.presser.attack(damage);
-			this.game.sound.play('hero_' + this.sound);
+			var sound = this.game.add.audio('hero_' + this.sound);
+			sound.play();
 			this.conflict.change_turn();
 			this.pay_exp();
 		}

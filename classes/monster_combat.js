@@ -30,11 +30,13 @@ var MonsterCombat = function (game, combat, monster) {
 
 	this.attack = function(){
 		this.attack_value(10);
-		game.sound.play('monster_attack');
+		var sound = game.add.audio('monster_attack');
+		sound.play();
 	};
 
 	this.dmg_sound = function(){
-		game.sound.play('monster_hurt');
+		var sound = game.add.audio('monster_hurt');
+		sound.play();
 	}
 
 	this.take_turn = function(){
@@ -47,7 +49,8 @@ var MonsterCombat = function (game, combat, monster) {
 	};
 
 	this.die = function (){
-		game.sound.play('monster_dying');
+		var sound = game.add.audio('monster_dying');
+		sound.play();
 	}
 
 	this.won = function (){
