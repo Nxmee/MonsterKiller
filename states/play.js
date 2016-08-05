@@ -42,6 +42,7 @@ var mouseclick = false;
 var monsters = [];
 var monstersprites = null;
 var merchant = [];
+var raw_data;
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
     game: null,
@@ -50,7 +51,7 @@ var Play = {
         this.game = game;
         this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
-        var raw_data = generate();
+        raw_data = generate();
         map_data = [].concat.apply([], raw_data);
         template['layers'][0]['data'] = map_data
         map_data = [].concat.apply([], generate());
@@ -139,19 +140,42 @@ var Play = {
         //this.game = game;
         // bob.x = this.game.input.mousePointer.x;
         // bob.y = this.game.input.mousePointer.y;
-        player = [coordtile(bob.x - 8, bob.y - 8),
-            coordtile(bob.x - 8, bob.y + 8),
-            coordtile(bob.x + 8, bob.y + 8),
-            coordtile(bob.x + 8, bob.y - 8)
+        //player order:
+        //top
+        //right
+        //left
+        //bottom
+
+        player = [coordtile(bob.x, bob.y - 16),
+            coordtile(bob.x + 16, bob.y),
+            coordtile(bob.x - 16, bob.y),
+            coordtile(bob.x, bob.y + 16)
         ];
+
+        var collision = false;
+        var mcollision = false;
+
         for (a = 0; a < monsters.length; a++) {
             for (i = 0; i < player.length; i++) {
-                if (monsters[a][0] == player[i][0] && monsters[a][1] == player[i][1]) {
-                    console.log("collision");
+                if ((monsters[a][0] / 32) == player[i][0] && (monsters[a][1] / 32) == player[i][1]) {
+                    mcollision = true;
                 }
             }
         }
 
+        for (b = 0; b < player.length; b++) {
+            if (raw_data[player[b][1]][player[b][0]] > 3) {
+                collision = b
+            }
+        }
+
+        if (mcollision) {
+            console.log("mcollision")
+        }
+
+        if (collision) {
+            console.log("collision " + collision.toString())
+        }
 
         if (moving != true) {
             //track location of cursor
