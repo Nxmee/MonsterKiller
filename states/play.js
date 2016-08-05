@@ -35,35 +35,16 @@ var template = {
 
 //global Vars
 var bob = null;
+var indicator = null;
 var moving = null;
-var moveX = 0;
-var moveY = 0;
+//var indicator.x = 0;
+//var indicator.y = 0;
 var diffX = 0;
 var diffY = 0;
 var map_data = {};
 var mouseclick = false;
 var restore = false;
-//Returns the block coords of the specified position
-//see https://www.khanacademy.org/computer-programming/square-detection-test/6136326014238720 for example
-var getblock = function(x,y){
-     var blockX = Math.floor(x/32);
-     var blockY = Math.floor(y/32);
-     var coords = {
-       "x":blockX,
-       "y":blockY
-     };
-     return coords;
- };
-//get centre coordinates of block position
-var getCentreOfBlock = function(blockX,blockY) {
-    var X = (blockX * 32) + 16;
-    var Y = (blockY * 32) + 16;
-    var coords = {
-       "x":X,
-       "y":Y
-     };
-     return coords;
-}; 
+
 
 function generateSkeleton() { //don't say swears
     Play.maps[Play.cmap]['data'] = generate();
@@ -137,6 +118,7 @@ var Play = {
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
+        this.game.load.spritesheet('indicator', 'assets/images/tiles/indicator.png?' + n,32,32);
         this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
         this.game.load.image('slime', 'assets/images/monsters/slime/stationary.png?' + n);
         this.game.load.image('blobby', 'assets/images/monsters/blobby/stationary.png?' + n);
@@ -158,6 +140,9 @@ var Play = {
         bob = this.game.add.sprite(this.maps[this.cmap]['playerp']["x"], this.maps[this.cmap]['playerp']["y"], 'player');
         bob.anchor.x = 0.5;
         bob.anchor.y = 0.5;
+        indicator = this.game.add.sprite(this.game.input.mousePointer.x,this.game.input.mousePointer.y,'indicator');
+        indicator.anchor.x = 0.5;
+        indicator.anchor.y = 0.5;
         //var monstertyperand = 0;
         monsters = this.maps[this.cmap]['monsters']
         for (i = 0; i < monsters.length; i++) {
@@ -243,25 +228,27 @@ var Play = {
 
         if (moving != true) {
             //track location of cursor
-            moveX = (Math.floor(this.game.input.mousePointer.x / 32) * 32);
-            moveY = (Math.floor(this.game.input.mousePointer.y / 32) * 32);
+            blockpos = getblock(this.game.input.mousePointer.x,this.game.input.mousePointer.y);
+            movepos = getCentreOfBlock(blockpos.x,blockpos.y);
+            indicator.x = movepos.x;
+            indicator.y = movepos.y;
             //looking at cursor
             var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
             angle = angle * (180 / Math.PI);
             bob.angle = angle + 90;
         } else {
             if (!collision) {
-                if (moveX > bob.x) {
+                if (indicator.x > bob.x) {
                     bob.x = bob.x + 1;
-                } else if (moveX < bob.x) {
+                } else if (indicator.x < bob.x) {
                     bob.x = bob.x - 1;
                 }
-                if (moveY > bob.y) {
+                if (indicator.y > bob.y) {
                     bob.y = bob.y + 1;
-                } else if (moveY < bob.y) {
+                } else if (indicator.y < bob.y) {
                     bob.y = bob.y - 1;
                 }
-                if (moveY == bob.y && moveX == bob.x) {
+                if (indicator.y == bob.y && indicator.x == bob.x) {
                     moving = false;
                 }
             }
@@ -271,19 +258,19 @@ var Play = {
             moving = true;
             blockpos = getblock(this.game.input.mousePointer.x,this.game.input.mousePointer.y);
             movepos = getCentreOfBlock(blockpos.x,blockpos.y);
-            moveX = movepos.x;
-            moveY = movepos.y
-            /*if (moveX > bob.X) {
-            diffX = Math.round(moveX - bob.X);
+            indicator.x = movepos.x;
+            indicator.y = movepos.y;
+            /*if (indicator.x > bob.X) {
+            diffX = Math.round(indicator.x - bob.X);
             }
             else {
-            diffX = Math.round(bob.X - moveX);    
+            diffX = Math.round(bob.X - indicator.x);    
             }
-            if (moveY > bob.Y) {
-            diffY = Math.round(moveY - bob.Y);
+            if (indicator.y > bob.Y) {
+            diffY = Math.round(indicator.y - bob.Y);
             }
             else {
-            diffY = Math.round(bob.Y - moveY);    
+            diffY = Math.round(bob.Y - indicator.y);    
             }*/
 
         }
@@ -319,8 +306,8 @@ var Play = {
             this.game.monster = {
                 name: mcollision
             };
-            this.maps[this.cmap]['playerp']["x"] = moveX;
-            this.maps[this.cmap]['playerp']["y"] = moveY;
+            this.maps[this.cmap]['playerp']["x"] = indicator.x;
+            this.maps[this.cmap]['playerp']["y"] = indicator.y;
             this.game.combat_invoker = this;
             this.game.state.start('combat');
         }
