@@ -41,6 +41,7 @@ var diffY = 0;
 var mouseclick = false;
 var monsters = [];
 var monstersprites = null;
+var monstertypes = [];
 var merchant = [];
 var raw_data;
 var Play = {
@@ -114,21 +115,25 @@ var Play = {
                     // console.log("0")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'slime');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
+                    monstertypes.push('slime');
                     break;
                 case 1:
                     // console.log("1")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'blobby');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'blobby');
+                    monstertypes.push('blobby');
                     break;
                 case 2:
                     // console.log("2")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'bat');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'bat');
+                    monstertypes.push('bat');
                     break;
                 case 3:
                     // console.log("3")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'spider');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'spider');
+                    monstertypes.push('spider');
                     break;
                     // monstersprites.create(monsters[i][0], monsters[i][1], 'spider');
             };
@@ -158,7 +163,7 @@ var Play = {
         for (a = 0; a < monsters.length; a++) {
             for (i = 0; i < player.length; i++) {
                 if ((monsters[a][0] / 32) == player[i][0] && (monsters[a][1] / 32) == player[i][1]) {
-                    mcollision = true;
+                    mcollision = monstertypes[a];
                 }
             }
         }
@@ -170,11 +175,11 @@ var Play = {
         }
 
         if (mcollision) {
-            console.log("mcollision")
+            console.log("mcollision " + mcollision);
         }
 
         if (collision) {
-            console.log("collision " + collision.toString())
+            console.log("collision " + collision.toString());
         }
 
         if (moving != true) {
