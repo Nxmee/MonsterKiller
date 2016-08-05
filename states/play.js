@@ -57,7 +57,8 @@ var Play = {
         for (i = 0; i < generateN(2, 5); i++) {
             x,
             y = spawnmonster(map_data);
-            monsters.push([x, y])
+            monsters
+.push([x, y])
         }
         x, y = spawnmonster(map_data)
         while (!monsters.indexOf([x, y])) {
