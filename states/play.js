@@ -50,23 +50,33 @@ var Play = {
         this.game = game;
         this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
-        map_data = [].concat.apply([], generate())
+        var raw_data = generate();
+        map_data = [].concat.apply([], raw_data);
         template['layers'][0]['data'] = map_data
         map_data = [].concat.apply([], generate());
         monstersprites = this.game.add.group();
+
         for (i = 0; i < generateN(2, 5); i++) {
             x,
-            y = spawnmonster(map_data);
-            monsters.push([x, y])
+            y = spawnmonster(raw_data);
+            ok = true;
+            for (a = 0; a < monsters.length; a++) {
+                if (monsters[a][0] == x) {
+                    if (monsters[a][1] == y) {
+                        ok = false;
+                    }
+                }
+            }
+            if (ok) {
+                monsters.push([x, y])
+            }
         }
-        x, y = spawnmonster(map_data)
-        while (!monsters.indexOf([x, y])) {
-            x,
-            y = spawnmonster(map_data)
-        }
+
+        x, y = spawnmonster(raw_data)
         merchant = [x, y]
-            // template['layers']['data'] = map_data
-            // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
+
+        // template['layers']['data'] = map_data
+        // game.load.tilemap('tilemap', null, template, Phaser.Tilemap.TILED_JSON);
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
