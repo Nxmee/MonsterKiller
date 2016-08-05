@@ -139,6 +139,20 @@ var Play = {
         //this.game = game;
         // bob.x = this.game.input.mousePointer.x;
         // bob.y = this.game.input.mousePointer.y;
+        player = [coordtile(bob.x - 8, bob.y - 8),
+            coordtile(bob.x - 8, bob.y + 8),
+            coordtile(bob.x + 8, bob.y + 8),
+            coordtile(bob.x + 8, bob.y - 8)
+        ];
+        for (a = 0; a < monsters.length; a++) {
+            for (i = 0; i < player.length; i++) {
+                if (monsters[a][0] == player[i][0] && monsters[a][1] == player[i][1]) {
+                    console.log("collision");
+                }
+            }
+        }
+
+
         if (moving != true) {
             //track location of cursor
             moveX = (Math.floor(this.game.input.mousePointer.x / 32) * 32);
@@ -148,8 +162,6 @@ var Play = {
             angle = angle * (180 / Math.PI);
             bob.angle = angle + 90;
         } else {
-            console.log(moveX);
-            console.log(moveY);
             if (moveX > bob.x) {
                 bob.x = bob.x + 1;
             } else if (moveX < bob.x) {
