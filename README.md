@@ -27,7 +27,7 @@ A monster killing game.
 - Implements assets of the game
   - Music by luckystar
   - Graphics by Cheese and luckystar
-- Often poor spelling and grammer.
+- Often poor spelling and grammar.
   
 **How to play**
 - This is a point and click game where we fight monsters.
