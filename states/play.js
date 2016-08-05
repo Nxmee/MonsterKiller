@@ -40,6 +40,7 @@ var moveX = 0;
 var moveY = 0;
 var diffX = 0;
 var diffY = 0;
+var map_data = {};
 var mouseclick = false;
 var restore = false;
 //Returns the block coords of the specified position
@@ -121,14 +122,17 @@ var Play = {
             this.maps = [{
                 "monsters": [],
                 "data": [],
-                "playerp": [],
+                "playerp": {
+                    "x":336,
+                    "y":336,
+                },
                 "merchantp": []
             }];
             generateSkeleton();
         }
 
-        map_data = [].concat.apply([], this.maps[this.cmap]['data']);
-        template['layers'][0]['data'] = map_data
+        map_data["map"] = [].concat.apply([], this.maps[this.cmap]['data']);
+        template['layers'][0]['data'] = map_data["map"]
 
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
@@ -147,11 +151,11 @@ var Play = {
         var map = null;
         var layer = null;
         this.game.stage.backgroundColor = '#787878';
-        map = this.game.add.tilemap('map1');
-        map.addTilesetImage('tilesheet', 'tiles');
-        layer = map.createLayer('Layer1');
+        backgroundTileMap = this.game.add.tilemap('map1');
+        backgroundTileMap.addTilesetImage('tilesheet', 'tiles');
+        layer = backgroundTileMap.createLayer('Layer1');
         layer.resizeWorld();
-        bob = this.game.add.sprite(320, 320, 'player');
+        bob = this.game.add.sprite(this.maps[this.cmap]['playerp']["x"], this.maps[this.cmap]['playerp']["y"], 'player');
         bob.anchor.x = 0.5;
         bob.anchor.y = 0.5;
         //var monstertyperand = 0;
@@ -315,7 +319,8 @@ var Play = {
             this.game.monster = {
                 name: mcollision
             };
-            this.maps[this.cmap]['playerp'] = [bob.x, bob.y];
+            this.maps[this.cmap]['playerp']["x"] = moveX;
+            this.maps[this.cmap]['playerp']["y"] = moveY;
             this.game.combat_invoker = this;
             this.game.state.start('combat');
         }
