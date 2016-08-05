@@ -92,28 +92,29 @@ var Play = {
         bob = this.game.add.sprite(320, 320, 'player');
         bob.anchor.x = 0.5;
         bob.anchor.y = 0.5;
+        var monstertyperand = 0;
         for (i = 0; i < monsters.length; i++) {
-            var monstertype = 0;
-            console.log(monstertype);
-            switch (monstertype) {
+            monstertyperand = 0 + Math.floor(Math.random() * ((3) + 1));
+            console.log(monstertyperand);
+            switch (monstertyperand) {
                 case 0:
-                    console.log("0")
-                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'slime');
+                    // console.log("0")
+                    //monsterssprites.create(monsters[i][0], monsters[i][1], 'slime');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
                     break;
                 case 1:
-                    console.log("1")
-                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'blobby');
+                    // console.log("1")
+                    //monsterssprites.create(monsters[i][0], monsters[i][1], 'blobby');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'blobby');
                     break;
                 case 2:
-                    console.log("2")
-                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'bat');
+                    // console.log("2")
+                    //monsterssprites.create(monsters[i][0], monsters[i][1], 'bat');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'bat');
                     break;
                 case 3:
-                    console.log("3")
-                        //monsterssprites.create(monsters[i][0], monsters[i][1], 'spider');
+                    // console.log("3")
+                    //monsterssprites.create(monsters[i][0], monsters[i][1], 'spider');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'spider');
                     break;
                     // monstersprites.create(monsters[i][0], monsters[i][1], 'spider');
