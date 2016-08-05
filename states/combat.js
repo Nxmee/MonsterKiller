@@ -34,18 +34,26 @@ var Combat = {
         );
 
         this.buttons = [
-             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       -0.05,  2),
-             new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png',  0.25,  15),
-             new AttackButton(this.game, this, 'assets/images/buttons/kick.png',         0.44,  20),
-             new AttackButton(this.game, this, 'assets/images/buttons/axe.png',          0.65,  50),
-             new AttackButton(this.game, this, 'assets/images/buttons/sword.png',        0.85,  100),
+             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       'attacks/punch',        -0.05,  2),
+             new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png', 'attacks/pointy_stick',  0.25,  15),
+             new AttackButton(this.game, this, 'assets/images/buttons/kick.png',        'attacks/kick',          0.44,  20),
+             new AttackButton(this.game, this, 'assets/images/buttons/axe.png',         'attacks/axe',           0.65,  50),
+             new AttackButton(this.game, this, 'assets/images/buttons/sword.png',       'attacks/sword',         0.85,  100),
 
             new DefenceButton(this.game, this, 'assets/images/buttons/heal.png',   function(){
-                this.conflict.combatants[1].heal(20);
+                if (this.presser.heals >= 1){
+                    this.presser.heal(20);
+                    this.presser.heals -= 1;
+                }
+            }, function (){
+                return this.presser.heals >= 1;
             }),
 
-            new DefenceButton(this.game, this, 'assets/images/buttons/armour.png', function(){
-                this.conflict.combatants[1].dr += 5;
+            new DefenceButton(this.game, this, 'assets/images/buttons/shield.png', function(){
+                this.presser.dr += 50;
+                this.presser.shields -= 1;
+            }, function() {
+                return this.presser.shields >= 1 && this.presser.dr == 0;
             })
         ];
     },

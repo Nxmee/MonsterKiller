@@ -1,17 +1,18 @@
-var DefenceButton = function (game, conflict, location, action) {
+var DefenceButton = function (game, conflict, location, action, requirements) {
 	CombatButton.apply(this, arguments);
-	this.action = action;
+
+	this.action       = action;
+	this.requirements = requirements;
 
 	this.press = function(){
 		if (this.can_press()) {
 			this.action();
 			this.conflict.change_turn();
-			this.pay_exp();
 		}
 	};
 
 	this.can_press = function() {
-		return this.conflict.combatants[1].is_turn();
+		return this.presser.is_turn() && this.requirements();
 	}
 
 	this.draw = function (i) {
@@ -28,7 +29,10 @@ var DefenceButton = function (game, conflict, location, action) {
 			this.game.height - 150,
 			this.location,
 			this.press,
-			this
+			this,
+			this.can_press() ? 1 : 0,
+			this.can_press() ? 1 : 0,
+			this.can_press() ? 1 : 0
 		);
 	};
 }

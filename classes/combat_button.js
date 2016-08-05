@@ -1,8 +1,7 @@
-var CombatButton = function(game, conflict, location, required_exp) {
+var CombatButton = function(game, conflict, location) {
 	this.game         = game;
 	this.conflict     = conflict;
 	this.location     = location;
-	this.required_exp = required_exp;
 
 	this.game.load.spritesheet(
 		this.location,
@@ -10,4 +9,6 @@ var CombatButton = function(game, conflict, location, required_exp) {
 		100,
 		32
 	);
+
+	this.presser = this.conflict.combatants[1];
 }
