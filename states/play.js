@@ -229,11 +229,11 @@ var Play = {
         }
         if (mcollision) {
             this.game.monster = {
-             name: 'blobby '
+                name: 'blobby'
 
-        };
-        this.game.combat_invoker = this;
-        this.game.state.start('combat');
+            };
+            this.game.combat_invoker = this;
+            this.game.state.start('combat');
         }
     }
 };
