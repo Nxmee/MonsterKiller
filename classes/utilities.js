@@ -1,7 +1,7 @@
-function standingid(x, y) {
-    x = Math.round((x + 8) / 20)
-    y = Math.round((y + 8) / 20)
-    return map[y][x]
+function coordtile(x, y) {
+    tileX = Math.floor(x / 32);
+    tileY = Math.floor(y / 32);
+    return ([tileX, tileY])
 }
 
 function generateN(lower_bound, upper_bound) {
