@@ -8,18 +8,6 @@ var MainMenu = {
 		},
 
 		{
-			name: 'continue',
-			onclick: function () {
-			}
-		},
-
-		{
-			name: 'High_score',
-			onclick: function () {
-			}
-		},
-
-		{
 			name: 'Options',
 			onclick: function () {
 				this.game.state.start('options_menu');
@@ -29,8 +17,8 @@ var MainMenu = {
 
 	button_width:   250,
 	button_height:  50,
-	buttons_y:      100,
-	button_spacing: 75,
+	buttons_y:      175,
+	button_spacing: 200,
 
 	game: null,
 
