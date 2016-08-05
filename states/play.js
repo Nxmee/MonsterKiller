@@ -252,18 +252,20 @@ var Play = {
             angle = angle * (180 / Math.PI);
             bob.angle = angle + 90;
         } else {
-            if (moveX > bob.x) {
-                bob.x = bob.x + 1;
-            } else if (moveX < bob.x) {
-                bob.x = bob.x - 1;
-            }
-            if (moveY > bob.y) {
-                bob.y = bob.y + 1;
-            } else if (moveY < bob.y) {
-                bob.y = bob.y - 1;
-            }
-            if (moveY == bob.y && moveX == bob.x) {
-                moving = false;
+            if (!collision) {
+                if (moveX > bob.x) {
+                    bob.x = bob.x + 1;
+                } else if (moveX < bob.x) {
+                    bob.x = bob.x - 1;
+                }
+                if (moveY > bob.y) {
+                    bob.y = bob.y + 1;
+                } else if (moveY < bob.y) {
+                    bob.y = bob.y - 1;
+                }
+                if (moveY == bob.y && moveX == bob.x) {
+                    moving = false;
+                }
             }
         }
         if (this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
@@ -289,7 +291,20 @@ var Play = {
             mouseclick = false;
         }
         if (collision) {
-
+            switch (collision) {
+                case 0:
+                    bob.y -= 1
+                    break;
+                case 1:
+                    bob.x -= 1
+                    break;
+                case 2:
+                    bob.y += 1
+                    break;
+                case 3:
+                    bob.y += 1
+                    break;
+            }
         }
         if (mcollision) {
             this.game.monster = {
