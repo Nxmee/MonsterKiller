@@ -65,7 +65,7 @@ var PlayerCombat = function (game, combat, type) {
 	}
 
 	this.won = function (){
-		this.game.combat_invoker.maps(); // restores
+		game.state.start('play');
 	}
 }
 

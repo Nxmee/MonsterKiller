@@ -34,11 +34,11 @@ var Combat = {
         );
 
         this.buttons = [
-             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       'attacks/punch',        -0.025, 2),
-             new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png', 'attacks/pointy_stick',  0.25,  15),
-             new AttackButton(this.game, this, 'assets/images/buttons/kick.png',        'attacks/kick',          0.44,  20),
-             new AttackButton(this.game, this, 'assets/images/buttons/axe.png',         'attacks/axe',           0.65,  50),
-             new AttackButton(this.game, this, 'assets/images/buttons/sword.png',       'attacks/sword',         0.85,  100),
+             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       'attacks/punch',        -0.025, 4),
+             new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png', 'attacks/pointy_stick',  0.25,  30),
+             new AttackButton(this.game, this, 'assets/images/buttons/kick.png',        'attacks/kick',          0.44,  40),
+             new AttackButton(this.game, this, 'assets/images/buttons/axe.png',         'attacks/axe',           0.65,  100),
+             new AttackButton(this.game, this, 'assets/images/buttons/sword.png',       'attacks/sword',         0.85,  200),
 
             new DefenceButton(this.game, this, 'assets/images/buttons/heal.png',   function(){
                 if (this.presser.heals >= 1){
@@ -50,7 +50,7 @@ var Combat = {
             }),
 
             new DefenceButton(this.game, this, 'assets/images/buttons/shield.png', function(){
-                this.presser.dr += 25;
+                this.presser.dr += 50;
                 this.presser.shields -= 1;
             }, function() {
                 return this.presser.shields >= 1 && this.presser.dr == 0;

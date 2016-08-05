@@ -29,7 +29,7 @@ var MonsterCombat = function (game, combat, monster) {
 	};
 
 	this.attack = function(){
-		this.attack_value(10);
+		this.attack_value(20);
 		var sound = game.add.audio('monster_attack');
 		sound.play();
 	};
