@@ -140,10 +140,16 @@ var Play = {
         //this.game = game;
         // bob.x = this.game.input.mousePointer.x;
         // bob.y = this.game.input.mousePointer.y;
-        player = [coordtile(bob.x - 16, bob.y - 16),
-            coordtile(bob.x - 16, bob.y + 16),
-            coordtile(bob.x + 16, bob.y + 16),
-            coordtile(bob.x + 16, bob.y - 16)
+        //player order:
+        //top
+        //right
+        //left
+        //bottom
+
+        player = [coordtile(bob.x, bob.y - 16),
+            coordtile(bob.x + 16, bob.y),
+            coordtile(bob.x - 16, bob.y),
+            coordtile(bob.x, bob.y + 16)
         ];
 
         var collision = false;
@@ -157,9 +163,9 @@ var Play = {
             }
         }
 
-        for (i = 0; i < player.length; i++) {
-            if (raw_data[player[i][1]][player[i][0]] > 3) {
-                collision = i
+        for (b = 0; b < player.length; b++) {
+            if (raw_data[player[b][1]][player[b][0]] > 3) {
+                collision = b
             }
         }
 
@@ -168,7 +174,7 @@ var Play = {
         }
 
         if (collision) {
-            console.log("collision " + i.toString())
+            console.log("collision " + collision.toString())
         }
 
         if (moving != true) {
