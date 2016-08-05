@@ -196,7 +196,8 @@ var Play = {
         //left
         //bottom
 
-        player = [coordtile(bob.x, bob.y - 16),
+        player = [
+            coordtile(bob.x, bob.y - 16),
             coordtile(bob.x + 16, bob.y),
             coordtile(bob.x - 16, bob.y),
             coordtile(bob.x, bob.y + 16)
@@ -228,10 +229,10 @@ var Play = {
             }
         }
 
-        for (b = 0; b < player.length; b++) {
-            if (this.maps[this.cmap]['data'][player[b][1]][player[b][0]] > 3) {
-                collision = b
-                ttype = this.maps[this.cmap]['data'][player[b][1]][player[b][0]];
+        for (d = 0; d < player.length; d++) {
+            ttype = this.maps[this.cmap]['data'][player[d][1]][player[d][0]]
+            if (ttype > 3 && ttype != 7) {
+                collision = d;
             }
         }
 
@@ -291,20 +292,25 @@ var Play = {
             mouseclick = false;
         }
         if (collision) {
+            moving = false;
             switch (collision) {
                 case 0:
-                    bob.y -= 1
+                    bob.x += 1
                     break;
                 case 1:
-                    bob.x -= 1
+                    bob.y -= 1
                     break;
                 case 2:
                     bob.y += 1
                     break;
                 case 3:
-                    bob.y += 1
+                    bob.x -= 1
                     break;
             }
+            /*
+            if (ttype==9) {
+                this.cmap +=1
+            }*/
         }
         if (mcollision) {
             this.game.monster = {
