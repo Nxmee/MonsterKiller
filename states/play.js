@@ -139,7 +139,6 @@ var Play = {
             //looking at cursor
             var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
             angle = angle * (180 / Math.PI);
-            /
             bob.angle = angle + 90;
         } else {
             if (moveX > bob.x) {
