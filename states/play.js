@@ -94,7 +94,7 @@ var Play = {
         bob.anchor.y = 0.5;
         var monstertyperand = 0;
         for (i = 0; i < monsters.length; i++) {
-            monstertyperand = 0 + Math.floor(Math.random() * ((3) + 1));
+            monstertyperand = Math.floor(Math.random() * 4);
             console.log(monstertyperand);
             switch (monstertyperand) {
                 case 0:
@@ -134,6 +134,7 @@ var Play = {
             //looking at cursor
             var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
             angle = angle * (180 / Math.PI);
+            /
             bob.angle = angle + 90;
         } else {
             if (moveX > bob.x) {
