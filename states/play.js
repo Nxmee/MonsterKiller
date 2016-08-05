@@ -94,8 +94,13 @@ var Play = {
         bob.anchor.y = 0.5;
         var monstertyperand = 0;
         for (i = 0; i < monsters.length; i++) {
-            monstertyperand = Math.floor(Math.random() * 4);
-            console.log(monstertyperand);
+            var rand = Math.random() * 4.0
+                //console.log(rand);
+            monstertyperand = Math.floor(rand);
+            //console.log(monstertyperand);
+            console.log("hello");
+            console.log(Math.random());
+            console.log(Math.random());
             switch (monstertyperand) {
                 case 0:
                     // console.log("0")
