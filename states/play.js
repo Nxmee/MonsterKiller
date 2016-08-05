@@ -143,62 +143,60 @@ var Play = {
             coordtile(bob.x - 8, bob.y + 8),
             coordtile(bob.x + 8, bob.y + 8),
             coordtile(bob.x + 8, bob.y - 8)
-        ]
+        ];
         for (a = 0; a < monsters.length; a++) {
             for (i = 0; i < player.length; i++) {
                 if (monsters[a][0] == player[i][0] && monsters[a][1] == player[i][1]) {
-                    console.log("collision")
+                    console.log("collision");
                 }
             }
         }
 
-    }
-    if (moving != true) {
-        //track location of cursor
-        moveX = (Math.floor(this.game.input.mousePointer.x / 32) * 32);
-        moveY = (Math.floor(this.game.input.mousePointer.y / 32) * 32);
-        //looking at cursor
-        var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
-        angle = angle * (180 / Math.PI);
-        bob.angle = angle + 90;
-    } else {
-        console.log(moveX);
-        console.log(moveY);
-        if (moveX > bob.x) {
-            bob.x = bob.x + 1;
-        } else if (moveX < bob.x) {
-            bob.x = bob.x - 1;
-        }
-        if (moveY > bob.y) {
-            bob.y = bob.y + 1;
-        } else if (moveY < bob.y) {
-            bob.y = bob.y - 1;
-        }
-        if (moveY == bob.y && moveX == bob.x) {
-            moving = false;
-        }
-    }
-    if (this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
-        mouseclick = true;
-        moving = true;
-        moveX = 16 + (Math.round(this.game.input.mousePointer.x / 32) * 32);
-        moveY = 16 + (Math.round(this.game.input.mousePointer.y / 32) * 32);
-        /*if (moveX > bob.X) {
-        diffX = Math.round(moveX - bob.X);
-        }
-        else {
-        diffX = Math.round(bob.X - moveX);    
-        }
-        if (moveY > bob.Y) {
-        diffY = Math.round(moveY - bob.Y);
-        }
-        else {
-        diffY = Math.round(bob.Y - moveY);    
-        }*/
 
+        if (moving != true) {
+            //track location of cursor
+            moveX = (Math.floor(this.game.input.mousePointer.x / 32) * 32);
+            moveY = (Math.floor(this.game.input.mousePointer.y / 32) * 32);
+            //looking at cursor
+            var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
+            angle = angle * (180 / Math.PI);
+            bob.angle = angle + 90;
+        } else {
+            if (moveX > bob.x) {
+                bob.x = bob.x + 1;
+            } else if (moveX < bob.x) {
+                bob.x = bob.x - 1;
+            }
+            if (moveY > bob.y) {
+                bob.y = bob.y + 1;
+            } else if (moveY < bob.y) {
+                bob.y = bob.y - 1;
+            }
+            if (moveY == bob.y && moveX == bob.x) {
+                moving = false;
+            }
+        }
+        if (this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
+            mouseclick = true;
+            moving = true;
+            moveX = 16 + (Math.round(this.game.input.mousePointer.x / 32) * 32);
+            moveY = 16 + (Math.round(this.game.input.mousePointer.y / 32) * 32);
+            /*if (moveX > bob.X) {
+            diffX = Math.round(moveX - bob.X);
+            }
+            else {
+            diffX = Math.round(bob.X - moveX);    
+            }
+            if (moveY > bob.Y) {
+            diffY = Math.round(moveY - bob.Y);
+            }
+            else {
+            diffY = Math.round(bob.Y - moveY);    
+            }*/
+
+        }
+        if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
+            mouseclick = false;
+        }
     }
-    if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
-        mouseclick = false;
-    }
-}
 };
