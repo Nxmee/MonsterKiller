@@ -26,6 +26,12 @@ A monster killing game.
 **Assets**
 - Implements assets of the game
   - Music by luckystar
-  - Graphics by Cheez and luckystar
-- Often poor spelling
+  - Graphics by Cheese and luckystar
+- Often poor spelling and grammar.
   
+**How to play**
+- This is a point and click game where we fight monsters.
+  - Movement 
+    - Click on tile that you want to move to.
+  - Fighting monters
+    - Click on the coulored in buttons (the red and blue ones not the grey ones).
