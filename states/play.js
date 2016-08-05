@@ -141,10 +141,10 @@ var Play = {
         n = generateN(1, 2000).toString();
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
         this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
-        this.game.load.image('slime', 'assets/images/monsters/slime/Slime.png?' + n);
+        this.game.load.image('slime', 'assets/images/monsters/slime/stationary.png?' + n);
         this.game.load.image('blobby', 'assets/images/monsters/blobby/stationary.png?' + n);
-        this.game.load.image('bat', 'assets/images/monsters/bat/bat.png?' + n);
-        this.game.load.image('spider', 'assets/images/monsters/spider/walking.png?' + n);
+        this.game.load.image('bat', 'assets/images/monsters/bat/stationary.png?' + n);
+        this.game.load.image('spider', 'assets/images/monsters/spider/stationary.png?' + n);
         this.game.load.image('merchant', 'assets/images/Merchant/Merchant_Talking.png?' + n);
     },
 
