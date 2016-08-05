@@ -2,7 +2,7 @@ var Combatant = function (){
 	this.dr = 0;
 
 	this.attack_value = function (dmg) {
-		this.opponent().damage(Math.random() * dmg);
+		this.opponent().damage(dmg);
 	};
 
 	this.damage = function (dmg) {
