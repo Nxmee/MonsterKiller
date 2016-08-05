@@ -209,9 +209,11 @@ var Play = {
         for (a = 0; a < monsters.length; a++) {
             for (i = 0; i < player.length; i++) {
                 if ((monsters[a]['x'] / 32) == player[i][0] && (monsters[a]['y'] / 32) == player[i][1]) {
-                    mcollision = monsters[a]['type'];
-                    monsters[a]['fought'] = true;
-                    afought = true;
+                    if (!monsters[a]['fought']) {
+                        mcollision = monsters[a]['type'];
+                        monsters[a]['fought'] = true;
+                        afought = true;
+                    }
                     for (c = 0; c < monsters.length; c++) {
                         if (!monsters[c]['fought']) {
                             afought = false
@@ -232,6 +234,10 @@ var Play = {
         for (d = 0; d < player.length; d++) {
             ttype = this.maps[this.cmap]['data'][player[d][1]][player[d][0]]
             if (ttype > 3 && ttype != 7) {
+                /*if (ttype == 9) {
+                    this.cmap += 1
+                    this.game.state.start('play');
+                }*/
                 collision = d;
             }
         }
@@ -292,6 +298,7 @@ var Play = {
             mouseclick = false;
         }
         if (collision) {
+
             moving = false;
             switch (collision) {
                 //same as css
@@ -313,10 +320,6 @@ var Play = {
                     break;
             }
 
-            if (ttype == 9) {
-                this.cmap += 1
-                this.game.state.start('play');
-            }
 
         }
         if (mcollision) {
