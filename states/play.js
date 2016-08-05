@@ -157,8 +157,8 @@ var Play = {
         if (this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
             mouseclick = true;
             moving = true;
-            moveX = Math.round(this.game.input.mousePointer.x / 32) * 32;
-            moveY = Math.round(this.game.input.mousePointer.y / 32) * 32;
+            moveX = 16 + (Math.round(this.game.input.mousePointer.x / 32) * 32);
+            moveY = 16 + (Math.round(this.game.input.mousePointer.y / 32) * 32);
             /*if (moveX > bob.X) {
             diffX = Math.round(moveX - bob.X);
             }
