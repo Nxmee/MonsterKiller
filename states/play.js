@@ -115,25 +115,25 @@ var Play = {
                     // console.log("0")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'slime');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'slime');
-                    monstertypes.push(0);
+                    monstertypes.push('slime');
                     break;
                 case 1:
                     // console.log("1")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'blobby');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'blobby');
-                    monstertypes.push(1);
+                    monstertypes.push('blobby');
                     break;
                 case 2:
                     // console.log("2")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'bat');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'bat');
-                    monstertypes.push(2);
+                    monstertypes.push('bat');
                     break;
                 case 3:
                     // console.log("3")
                     //monsterssprites.create(monsters[i][0], monsters[i][1], 'spider');
                     this.game.add.sprite(monsters[i][0], monsters[i][1], 'spider');
-                    monstertypes.push(3);
+                    monstertypes.push('spider');
                     break;
                     // monstersprites.create(monsters[i][0], monsters[i][1], 'spider');
             };
@@ -175,7 +175,7 @@ var Play = {
         }
 
         if (mcollision) {
-            console.log("mcollision " + mcollision.toString());
+            console.log("mcollision " + mcollision);
         }
 
         if (collision) {
