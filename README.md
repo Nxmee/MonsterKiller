@@ -30,6 +30,6 @@ A monster killing game.
 - Often poor spelling and grammer.
   
 **How to play**
--This is a point and click game where we fight monsters.
-  -Movement - click on tile that you want to move to.
-  -fighting monters - Click on the coulored in buttons (the red and blue ones not the grey ones).
+- This is a point and click game where we fight monsters.
+  - Movement - click on tile that you want to move to.
+  - fighting monters - Click on the coulored in buttons (the red and blue ones not the grey ones).
