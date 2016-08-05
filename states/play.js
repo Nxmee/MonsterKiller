@@ -46,6 +46,71 @@ var monstertypes = [];
 var merchant = [];
 var raw_data;*/
 
+function generateCrap() {
+    Play.maps[Play.cmap]['data'] = generate();
+
+    monsters = Play.maps[Play.cmap]['monsters']
+
+    for (i = 0; i < generateN(2, 5); i++) {
+        monsters.push({ "x": 0, "y": 0, "type": 0, "fought": false });
+    }
+
+    for (i = 0; i < Play.maps[Play.cmap]['monsters'].length; i++) {
+        x,
+        y = spawnmonster(Play.maps[Play.cmap]['data']);
+        ok = true;
+        if (monsters[i]['x'] == x) {
+            if (monsters[i]['y'] == y) {
+                ok = false;
+            }
+        }
+
+        if (ok) {
+            monstertyperand = Math.floor(Math.random() * 4.0);
+            switch (monstertyperand) {
+                case 0:
+                    monsters[i] = {
+                        "x": x,
+                        "y": y,
+                        "type": "slime",
+                        "fought": false
+                    }
+                    break;
+                case 1:
+                    monsters[i] = {
+                        "x": x,
+                        "y": y,
+                        "type": "blobby",
+                        "fought": false
+                    }
+                    break;
+                case 2:
+                    monsters[i] = {
+                        "x": x,
+                        "y": y,
+                        "type": "bat",
+                        "fought": false
+                    }
+                    break;
+                case 3:
+                    monsters[i] = {
+                        "x": x,
+                        "y": y,
+                        "type": "spider",
+                        "fought": false
+                    }
+                    break;
+
+            }
+        }
+    }
+
+    x,
+    y = spawnmonster(Play.maps[Play.cmap]['data'])
+    Play.maps[Play.cmap]['merchantp'] = [x, y]
+}
+
+
 var Play = {
     //http://phaser.io/examples/v2/loader/load-tilemap-json
     game: null,
@@ -54,7 +119,10 @@ var Play = {
         this.game = game;
         this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
-        this.cmap = 0;
+        if (this.cmap == null) {
+            this.cmap = 0;
+        }
+
         if (!this.maps) {
             this.maps = [{
                 "monsters": [
@@ -69,73 +137,11 @@ var Play = {
                 "playerp": [],
                 "merchantp": []
             }];
-
-            this.maps[this.cmap]['data'] = generate();
-            map_data = [].concat.apply([], this.maps[this.cmap]['data']);
-
-            template['layers'][0]['data'] = map_data
-            map_data = [].concat.apply([], generate());
-            monsters = this.maps[this.cmap]['monsters']
-
-            for (i = 0; i < generateN(2, 5); i++) {
-                monsters.push({ "x": 0, "y": 0, "type": 0, "fought": false });
-            }
-
-            for (i = 0; i < this.maps[this.cmap]['monsters'].length; i++) {
-                x,
-                y = spawnmonster(this.maps[this.cmap]['data']);
-                ok = true;
-                if (monsters[i]['x'] == x) {
-                    if (monsters[i]['y'] == y) {
-                        ok = false;
-                    }
-                }
-
-                if (ok) {
-                    monstertyperand = Math.floor(Math.random() * 4.0);
-                    switch (monstertyperand) {
-                        case 0:
-                            monsters[i] = {
-                                "x": x,
-                                "y": y,
-                                "type": "slime",
-                                "fought": false
-                            }
-                            break;
-                        case 1:
-                            monsters[i] = {
-                                "x": x,
-                                "y": y,
-                                "type": "blobby",
-                                "fought": false
-                            }
-                            break;
-                        case 2:
-                            monsters[i] = {
-                                "x": x,
-                                "y": y,
-                                "type": "bat",
-                                "fought": false
-                            }
-                            break;
-                        case 3:
-                            monsters[i] = {
-                                "x": x,
-                                "y": y,
-                                "type": "spider",
-                                "fought": false
-                            }
-                            break;
-
-                    }
-                }
-            }
-
-            x,
-            y = spawnmonster(this.maps[this.cmap]['data'])
-            this.maps[this.cmap]['merchantp'] = [x, y]
+            generateCrap();
         }
 
+        map_data = [].concat.apply([], this.maps[this.cmap]['data']);
+        template['layers'][0]['data'] = map_data
 
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
@@ -164,11 +170,13 @@ var Play = {
         //var monstertyperand = 0;
         monsters = this.maps[this.cmap]['monsters']
         for (i = 0; i < monsters.length; i++) {
-            this.game.add.sprite(
-                monsters[i]['x'],
-                monsters[i]['y'],
-                monsters[i]['type']
-            );
+            if (!monsters[i]['fought']) {
+                this.game.add.sprite(
+                    monsters[i]['x'],
+                    monsters[i]['y'],
+                    monsters[i]['type']
+                );
+            }
         }
 
         this.game.add.sprite(
@@ -202,6 +210,21 @@ var Play = {
             for (i = 0; i < player.length; i++) {
                 if ((monsters[a]['x'] / 32) == player[i][0] && (monsters[a]['y'] / 32) == player[i][1]) {
                     mcollision = monsters[a]['type'];
+                    monsters[a]['fought'] = true;
+                    afought = true;
+                    for (a = 0; a < monsters.length; a++) {
+                        if (!monsters[a]['fought']) {
+                            afought = false
+                        }
+                    }
+                    if (afought) {
+                        data = this.maps[this.cmap]['data']
+                        for (b = 0; b < data.length; b++) {
+                            if (data[b][data[b].length - 1] == 8) {
+                                data[b][data[b].length - 1] = 9;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -209,6 +232,7 @@ var Play = {
         for (b = 0; b < player.length; b++) {
             if (this.maps[this.cmap]['data'][player[b][1]][player[b][0]] > 3) {
                 collision = b
+                ttype = this.maps[this.cmap]['data'][player[b][1]][player[b][0]];
             }
         }
 
@@ -264,6 +288,9 @@ var Play = {
         }
         if (this.game.input.activePointer.leftButton.isDown === false && mouseclick === true) {
             mouseclick = false;
+        }
+        if (collision) {
+
         }
         if (mcollision) {
             this.game.monster = {
