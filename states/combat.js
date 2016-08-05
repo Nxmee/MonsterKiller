@@ -10,22 +10,12 @@ var Combat = {
 
         this.game.load.spritesheet(
             'monster_name',
-            'assets/images/Labels/name_' + this.monster.name + '.png'
+            'assets/images/labels/name_' + this.monster.name + '.png'
         );
 
         this.game.load.spritesheet(
             'hero_name',
-            'assets/images/Labels/name_hero.png'
-        );
-
-        this.game.load.spritesheet(
-            'monster_turn',
-            'assets/images/Lables/monster_turn.png'
-        );
-
-        this.game.load.spritesheet(
-            'hero_turn',
-            'assets/images/Lables/hero_turn.png'
+            'assets/images/labels/name_hero.png'
         );
 
         this.player_bar  = new Bar(this.game, 50,                    50, 100, 16, 1);
@@ -44,18 +34,26 @@ var Combat = {
         );
 
         this.buttons = [
-             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       -0.05,  2),
-             new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png',  0.25,  15),
-             new AttackButton(this.game, this, 'assets/images/buttons/kick.png',         0.44,  20),
-             new AttackButton(this.game, this, 'assets/images/buttons/axe.png',          0.65,  50),
-             new AttackButton(this.game, this, 'assets/images/buttons/sword.png',        0.85,  100),
+             new AttackButton(this.game, this, 'assets/images/buttons/punch.png',       'attacks/punch',        -0.05,  2),
+             new AttackButton(this.game, this, 'assets/images/buttons/pointystick.png', 'attacks/pointy_stick',  0.25,  15),
+             new AttackButton(this.game, this, 'assets/images/buttons/kick.png',        'attacks/kick',          0.44,  20),
+             new AttackButton(this.game, this, 'assets/images/buttons/axe.png',         'attacks/axe',           0.65,  50),
+             new AttackButton(this.game, this, 'assets/images/buttons/sword.png',       'attacks/sword',         0.85,  100),
 
             new DefenceButton(this.game, this, 'assets/images/buttons/heal.png',   function(){
-                this.conflict.combatants[1].heal(20);
+                if (this.presser.heals >= 1){
+                    this.presser.heal(20);
+                    this.presser.heals -= 1;
+                }
+            }, function (){
+                return this.presser.heals >= 1;
             }),
 
-            new DefenceButton(this.game, this, 'assets/images/buttons/armour.png', function(){
-                this.conflict.combatants[1].dr += 5;
+            new DefenceButton(this.game, this, 'assets/images/buttons/shield.png', function(){
+                this.presser.dr += 50;
+                this.presser.shields -= 1;
+            }, function() {
+                return this.presser.shields >= 1 && this.presser.dr == 0;
             })
         ];
     },
@@ -94,10 +92,6 @@ var Combat = {
 
         this.game.add.sprite(50,                    20, 'hero_name');
         this.game.add.sprite(this.game.width - 150, 20, 'monster_name');
-
-        this.game.add.sprite(this.game.width/2, 50,
-            this.turn == 0 ? 'hero_turn' : 'monster_turn'
-        );
     },
 
     change_turn: function() {

@@ -13,6 +13,7 @@ var Combatant = function (){
 			this.dr = 0;
 		}
 		
+		this.dmg_sound();
 		this.check_alive();
 	};
 
@@ -34,7 +35,8 @@ var Combatant = function (){
 
 	this.check_alive = function () {
 		if (this.hp <= 0) {
-			alert('DEAD!');
+			this.die();
+			this.opponent().won();
 		}
 	};
 
