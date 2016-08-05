@@ -205,15 +205,14 @@ var Play = {
         var collision = false;
         var mcollision = false;
         monsters = this.maps[this.cmap]['monsters'];
-
         for (a = 0; a < monsters.length; a++) {
             for (i = 0; i < player.length; i++) {
                 if ((monsters[a]['x'] / 32) == player[i][0] && (monsters[a]['y'] / 32) == player[i][1]) {
                     mcollision = monsters[a]['type'];
                     monsters[a]['fought'] = true;
                     afought = true;
-                    for (a = 0; a < monsters.length; a++) {
-                        if (!monsters[a]['fought']) {
+                    for (c = 0; c < monsters.length; c++) {
+                        if (!monsters[c]['fought']) {
                             afought = false
                         }
                     }
