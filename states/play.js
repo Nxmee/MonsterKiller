@@ -294,23 +294,30 @@ var Play = {
         if (collision) {
             moving = false;
             switch (collision) {
+                //same as css
+                //top
                 case 0:
-                    bob.x += 1
-                    break;
-                case 1:
-                    bob.y -= 1
-                    break;
-                case 2:
                     bob.y += 1
                     break;
-                case 3:
+                    //right
+                case 1:
                     bob.x -= 1
                     break;
+                    //left
+                case 2:
+                    bob.x += 1
+                    break;
+                    //bottom
+                case 3:
+                    bob.y -= 1
+                    break;
             }
-            /*
-            if (ttype==9) {
-                this.cmap +=1
-            }*/
+
+            if (ttype == 9) {
+                this.cmap += 1
+                this.game.state.start('play');
+            }
+
         }
         if (mcollision) {
             this.game.monster = {
