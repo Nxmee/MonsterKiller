@@ -39,6 +39,7 @@ var moveY = 0;
 var diffX = 0;
 var diffY = 0;
 var mouseclick = false;
+var restore = false;
 /*var monsters = [];
 var monstersprites = null;
 var monstertypes = [];
@@ -53,84 +54,88 @@ var Play = {
         this.game = game;
         this.game.music.load('assets/music/Gameplay.wav');
         //uncomment below for dynamic
-        this.maps = [{
-            "monsters": [
-                /*{
-                    "x":0,
-                    "y":0,
-                    "type":"slime",
-                    "fought": false
-                } */
-            ],
-            "data": [],
-            "playerp": [],
-            "merchantp": []
-        }];
         this.cmap = 0;
-        this.maps[this.cmap]['data'] = generate();
-        map_data = [].concat.apply([], this.maps[this.cmap]['data']);
+        if (!this.maps) {
+            this.maps = [{
+                "monsters": [
+                    /*{
+                        "x":0,
+                        "y":0,
+                        "type":"slime",
+                        "fought": false
+                    } */
+                ],
+                "data": [],
+                "playerp": [],
+                "merchantp": []
+            }];
 
-        template['layers'][0]['data'] = map_data
-        map_data = [].concat.apply([], generate());
-        monsters = this.maps[this.cmap]['monsters']
+            this.maps[this.cmap]['data'] = generate();
+            map_data = [].concat.apply([], this.maps[this.cmap]['data']);
 
-        for (i = 0; i < generateN(2, 5); i++) {
-            monsters.push({ "x": 0, "y": 0, "type": 0, "fought": false });
-        }
+            template['layers'][0]['data'] = map_data
+            map_data = [].concat.apply([], generate());
+            monsters = this.maps[this.cmap]['monsters']
 
-        for (i = 0; i < this.maps[this.cmap]['monsters'].length; i++) {
+            for (i = 0; i < generateN(2, 5); i++) {
+                monsters.push({ "x": 0, "y": 0, "type": 0, "fought": false });
+            }
+
+            for (i = 0; i < this.maps[this.cmap]['monsters'].length; i++) {
+                x,
+                y = spawnmonster(this.maps[this.cmap]['data']);
+                ok = true;
+                if (monsters[i]['x'] == x) {
+                    if (monsters[i]['y'] == y) {
+                        ok = false;
+                    }
+                }
+
+                if (ok) {
+                    monstertyperand = Math.floor(Math.random() * 4.0);
+                    switch (monstertyperand) {
+                        case 0:
+                            monsters[i] = {
+                                "x": x,
+                                "y": y,
+                                "type": "slime",
+                                "fought": false
+                            }
+                            break;
+                        case 1:
+                            monsters[i] = {
+                                "x": x,
+                                "y": y,
+                                "type": "blobby",
+                                "fought": false
+                            }
+                            break;
+                        case 2:
+                            monsters[i] = {
+                                "x": x,
+                                "y": y,
+                                "type": "bat",
+                                "fought": false
+                            }
+                            break;
+                        case 3:
+                            monsters[i] = {
+                                "x": x,
+                                "y": y,
+                                "type": "spider",
+                                "fought": false
+                            }
+                            break;
+
+                    }
+                }
+            }
+
             x,
-            y = spawnmonster(this.maps[this.cmap]['data']);
-            ok = true;
-            if (monsters[i]['x'] == x) {
-                if (monsters[i]['y'] == y) {
-                    ok = false;
-                }
-            }
-
-            if (ok) {
-                monstertyperand = Math.floor(Math.random() * 4.0);
-                switch (monstertyperand) {
-                    case 0:
-                        monsters[i] = {
-                            "x": x,
-                            "y": y,
-                            "type": "slime",
-                            "fought": false
-                        }
-                        break;
-                    case 1:
-                        monsters[i] = {
-                            "x": x,
-                            "y": y,
-                            "type": "blobby",
-                            "fought": false
-                        }
-                        break;
-                    case 2:
-                        monsters[i] = {
-                            "x": x,
-                            "y": y,
-                            "type": "bat",
-                            "fought": false
-                        }
-                        break;
-                    case 3:
-                        monsters[i] = {
-                            "x": x,
-                            "y": y,
-                            "type": "spider",
-                            "fought": false
-                        }
-                        break;
-
-                }
-            }
+            y = spawnmonster(this.maps[this.cmap]['data'])
+            this.maps[this.cmap]['merchantp'] = [x, y]
         }
 
-        x,
-        y = spawnmonster(this.maps[this.cmap]['data'])
-        this.maps[this.cmap]['merchantp'] = [x, y]
 
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();
@@ -262,9 +267,9 @@ var Play = {
         }
         if (mcollision) {
             this.game.monster = {
-                name: 'blobby'
-
+                name: mcollision
             };
+            this.maps[this.cmap]['playerp'] = [bob.x, bob.y];
             this.game.combat_invoker = this;
             this.game.state.start('combat');
         }
