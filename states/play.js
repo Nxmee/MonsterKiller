@@ -98,9 +98,6 @@ var Play = {
                 //console.log(rand);
             monstertyperand = Math.floor(rand);
             //console.log(monstertyperand);
-            console.log("hello");
-            console.log(Math.random());
-            console.log(Math.random());
             switch (monstertyperand) {
                 case 0:
                     // console.log("0")
@@ -134,13 +131,15 @@ var Play = {
         // bob.y = this.game.input.mousePointer.y;
         if (moving != true) {
             //track location of cursor
-            moveX = (Math.floor(this.game.input.mousePointer.x / 32) * 32) + 8;
-            moveY = (Math.floor(this.game.input.mousePointer.y / 32) * 32) + 8;
+            moveX = (Math.floor(this.game.input.mousePointer.x / 32) * 32);
+            moveY = (Math.floor(this.game.input.mousePointer.y / 32) * 32);
             //looking at cursor
             var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
             angle = angle * (180 / Math.PI);
             bob.angle = angle + 90;
         } else {
+            console.log(moveX);
+            console.log(moveY);
             if (moveX > bob.x) {
                 bob.x = bob.x + 1;
             } else if (moveX < bob.x) {
