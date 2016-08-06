@@ -130,7 +130,8 @@ function treeBorder() {
 
 //spawns trees in the map
 function scenery() {
-    n_trees = generateN(2, 5)
+   // n_trees = generateN(2, 5)
+   n_trees = 3
     for (i = 0; i < n_trees; i++) {
         x = generateN(1, (map_width - 2))
         y = generateN(1, (map_length - 2))

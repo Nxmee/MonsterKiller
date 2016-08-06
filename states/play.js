@@ -42,8 +42,8 @@ var moving = null;
 var diffX = 0;
 var diffY = 0;
 var map_data = {};
-collision_data = [];
 var mouseclick = false;
+var canmove = true;
 var restore = false;
 function generateCollisionData() {
     mapdata = Play.maps[Play.cmap]['data']
@@ -51,7 +51,7 @@ function generateCollisionData() {
     var data = mapdata[i];
     var temp = [];
         for(var j = 0; j < data.length; j++) {
-            if(mapdata[i][j] > 3 && mapdata[i][j] != 7 && mapdata[i][j] != 9) {
+            if(mapdata[j][i] > 3 && mapdata[j][i] != 7 && mapdata[j][i] != 9) {
                 temp[j] = 1;
                //Play.maps[Play.cmap]['collisiondata'][i,j] = 1;
                 //collision_data[i,j] = 1;
@@ -140,7 +140,7 @@ var Play = {
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
         n = generateN(1, 2000).toString();//stops browser caching images
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
-        this.game.load.spritesheet('indicator', 'assets/images/tiles/indicator.png?' + n,32,32);
+        this.game.load.spritesheet('indicator', 'assets/images/tiles/indicator.png?' + n,32,32,3);
         this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
         this.game.load.image('slime', 'assets/images/monsters/slime/stationary.png?' + n);
         this.game.load.image('blobby', 'assets/images/monsters/blobby/stationary.png?' + n);
@@ -163,6 +163,7 @@ var Play = {
         bob.anchor.x = 0.5;
         bob.anchor.y = 0.5;
         indicator = this.game.add.sprite(this.game.input.mousePointer.x,this.game.input.mousePointer.y,'indicator');
+        indicator.frame = 0;
         indicator.anchor.x = 0.5;
         indicator.anchor.y = 0.5;
         //var monstertyperand = 0;
@@ -251,11 +252,21 @@ var Play = {
             movepos = getCentreOfBlock(blockpos.x,blockpos.y);
             indicator.x = movepos.x;
             indicator.y = movepos.y;
+            indicatorpos = getblock(indicator.x,indicator.y);
+            if (Play.maps[Play.cmap]['collisiondata'][indicatorpos.x][indicatorpos.y] == 1) {
+                canmove = false;
+                indicator.frame = 2
+            }
+            else {
+                canmove = true
+                indicator.frame = 0
+            }
             //looking at cursor
             var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
             angle = angle * (180 / Math.PI);
             bob.angle = angle + 90;
         } else {
+            indicator.frame = 1
             if (!collision) {
                 if (indicator.x > bob.x) {
                     bob.x = bob.x + 1;
@@ -272,18 +283,21 @@ var Play = {
                 }
             }
         }
-        if (this.game.input.activePointer.leftButton.isDown === true && mouseclick === false) {
+        if (this.game.input.activePointer.leftButton.isDown === true && mouseclick === false && canmove == true) {
             mouseclick = true;
             moving = true;
             blockpos = getblock(this.game.input.mousePointer.x,this.game.input.mousePointer.y);
             movepos = getCentreOfBlock(blockpos.x,blockpos.y);
             indicator.x = movepos.x;
             indicator.y = movepos.y;
+            var angle = Math.atan2(this.game.input.mousePointer.y - bob.y, this.game.input.mousePointer.x - bob.x);
+            angle = angle * (180 / Math.PI);
+            bob.angle = angle + 90;
             /*if (indicator.x > bob.X) {
             diffX = Math.round(indicator.x - bob.X);
             }
             else {
-            diffX = Math.round(bob.X - indicator.x);    
+            diffX = Math.round(bob.X - indicator.x); 
             }
             if (indicator.y > bob.Y) {
             diffY = Math.round(indicator.y - bob.Y);
