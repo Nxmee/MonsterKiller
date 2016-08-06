@@ -206,7 +206,7 @@ var Play = {
          for (a = 0; a < monsters.length; a++) {
             monsterblock = getblock(monsters[a]['x'],monsters[a]['y'])
             playerblock = getblock(bob.x,bob.y)
-            if (getblock(monsters[a]['x'],monsters[a]['y']) == getblock(bob.x,bob.y)) {
+            if (monsterblock.x == playerblock.x && monsterblock.y == playerblock.y) {
                 if (!monsters[a]['fought']) {
                         mcollision = monsters[a]['type'];
                         monsters[a]['fought'] = true;
@@ -363,11 +363,11 @@ var Play = {
 
         }
         if (mcollision) {
+            this.maps[this.cmap]['playerp']["x"] = indicator.x;
+            this.maps[this.cmap]['playerp']["y"] = indicator.y;
             this.game.monster = {
                 name: mcollision
             };
-            this.maps[this.cmap]['playerp']["x"] = indicator.x;
-            this.maps[this.cmap]['playerp']["y"] = indicator.y;
             this.game.combat_invoker = this;
             this.game.state.start('combat');
         }
