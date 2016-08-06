@@ -42,12 +42,33 @@ var moving = null;
 var diffX = 0;
 var diffY = 0;
 var map_data = {};
+collision_data = [];
 var mouseclick = false;
 var restore = false;
-
+function generateCollisionData() {
+    mapdata = Play.maps[Play.cmap]['data']
+    for(var i = 0; i < mapdata.length; i++) {
+    var data = mapdata[i];
+    var temp = [];
+        for(var j = 0; j < data.length; j++) {
+            if(mapdata[i][j] > 3 && mapdata[i][j] != 7 && mapdata[i][j] != 9) {
+                temp[j] = 1;
+               //Play.maps[Play.cmap]['collisiondata'][i,j] = 1;
+                //collision_data[i,j] = 1;
+            }
+            else {
+                temp[j] = 0;
+                //Play.maps[Play.cmap]['collisiondata'][i,j] = 0;
+                //collision_data[i,j] = 0;
+            }
+        }
+        Play.maps[Play.cmap]['collisiondata'].push(temp);
+    }
+}
 
 function generateSkeleton() { //don't say swears
     Play.maps[Play.cmap]['data'] = generate();
+    generateCollisionData();
     monsters = Play.maps[Play.cmap]['monsters']
 
     for (i = 0; i < generateN(2, 7); i++) {//adds monster prototypes
@@ -103,6 +124,7 @@ var Play = {
             this.maps = [{
                 "monsters": [],
                 "data": [],
+                "collisiondata": [],
                 "playerp": {
                     "x":336,
                     "y":336,
@@ -116,7 +138,7 @@ var Play = {
         template['layers'][0]['data'] = map_data["map"]
 
         this.game.load.tilemap('map1', null, template, Phaser.Tilemap.TILED_JSON);
-        n = generateN(1, 2000).toString();
+        n = generateN(1, 2000).toString();//stops browser caching images
         this.game.load.image('tiles', 'assets/images/tiles/tilesheet.png?' + n);
         this.game.load.spritesheet('indicator', 'assets/images/tiles/indicator.png?' + n,32,32);
         this.game.load.image('player', 'assets/images/hero/stationary.png?' + n);
@@ -163,9 +185,6 @@ var Play = {
     },
 
     update: function() {
-        //this.game = game;
-        // bob.x = this.game.input.mousePointer.x;
-        // bob.y = this.game.input.mousePointer.y;
         //player order:
         //top
         //right
