@@ -202,7 +202,34 @@ var Play = {
         var collision = false;
         var mcollision = false;
         monsters = this.maps[this.cmap]['monsters'];
-        for (a = 0; a < monsters.length; a++) {
+
+         for (a = 0; a < monsters.length; a++) {
+            monsterblock = getblock(monsters[a]['x'],monsters[a]['y'])
+            playerblock = getblock(bob.x,bob.y)
+            if (getblock(monsters[a]['x'],monsters[a]['y']) == getblock(bob.x,bob.y)) {
+                if (!monsters[a]['fought']) {
+                        mcollision = monsters[a]['type'];
+                        monsters[a]['fought'] = true;
+                        afought = true;
+                    }
+                for (c = 0; c < monsters.length; c++) {
+                        if (!monsters[c]['fought']) {
+                            afought = false
+                        }
+                    }
+                    if (afought) {
+                        data = this.maps[this.cmap]['data']
+                        for (b = 0; b < data.length; b++) {
+                            if (data[b][data[b].length - 1] == 8) {
+                                data[b][data[b].length - 1] = 9;
+                            }
+                        }
+                    }
+            }
+         }
+
+        //old monster collision code
+        /*  for (a = 0; a < monsters.length; a++) {
             for (i = 0; i < player.length; i++) {
                 if ((monsters[a]['x'] / 32) == player[i][0] && (monsters[a]['y'] / 32) == player[i][1]) {
                     if (!monsters[a]['fought']) {
@@ -225,7 +252,7 @@ var Play = {
                     }
                 }
             }
-        }
+        }*/
 
         for (d = 0; d < player.length; d++) {
             ttype = this.maps[this.cmap]['data'][player[d][1]][player[d][0]]
