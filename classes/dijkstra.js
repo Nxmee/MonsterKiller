@@ -37,12 +37,13 @@ function
 
 function returnNearby(Coords) { //returns an array of coordinates nearby a specified coordinate i.e entering [1,1] returns [0,0], [2,1] etc.
     var nearbyArray = []
-    for (var X = -1; X < 2; X++) {
-        for (var Y = -1; Y < 2; Y++) {
+    for (var X = -1; X < 2; X++) { //X goes from -1 to 1
+        for (var Y = -1; Y < 2; Y++) { //Y goes from -1 to 1
             newX = Coords[0] + X
             newY = Coords[1] + Y
-            if (newX > 0 && newX < nodemap.length && newY > 0 && newY < nodemap[0].length) // makes sure the new coordinates are within the range
+            if (newX > 0 && newX < nodemap.length && newY > 0 && newY < nodemap[0].length) { // makes sure the new coordinates are within the range
                 nearbyArray.push([newX, newY])
+            }
         }
     }
 }
